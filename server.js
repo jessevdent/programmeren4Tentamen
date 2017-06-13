@@ -33,7 +33,7 @@ app.use('*', function(req, res){
 	});
 });
 
-app.listen(app.get('port'), function(){
+app.listen(process.env.PORT || 3000, function(){
 	console.log('De server luistert op port ' + app.get('port'));	
 });
 

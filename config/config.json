@@ -1,6 +1,6 @@
 {
 	"webPort"	: "3000",
-	"dbHost"	: "146.185.130.82",
+	"dbHost"	: "localhost",
 	"dbUser"	: "1033",
 	"dbDatabase": "1033",
 	"secretkey" : "Pindakaaspot"
