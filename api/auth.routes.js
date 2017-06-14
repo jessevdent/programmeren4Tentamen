@@ -34,7 +34,7 @@ routes.post('/register', function(req, res) {
 
     var users = req.body;
     var query = {
-        sql: 'INSERT INTO `1033`.`customer`(`create_date`, `last_update`, `username`, `password`, `first_name`, `last_name`, `email`) VALUES (?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?, ?)',
+        sql: 'INSERT INTO `1033`.`customer`(`create_date`, `last_update`, `username`, `password`, `first_name`, `last_name`, `email`) VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, ?, ?, ?, ?, ?)',
         values: [users.username, users.password, users.first_name, users.last_name, users.email],
         timeout: 2000
     };
