@@ -21,7 +21,7 @@ routes.get('/films/:filmid', function(req, res){
 
     res.contentType('application/json');
 
-    db.query('SELECT * FROM `1033`.`film` WHERE film_id=?', [ film_id ], function(error, rows, fields) {
+    db.query('SELECT * FROM `1033`.`film`,`1033`.`rental` WHERE film_id=?', [ film_id ], function(error, rows, fields) {
         if (error) {
             res.status(400);
             res.json({ error: 'Error while performing Query.'});
