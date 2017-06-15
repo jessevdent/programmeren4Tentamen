@@ -17,7 +17,7 @@ routes.get('/goodbye', function(req, res){
 
 routes.get('/films/:filmid', function(req, res){
 
-    var filmid = req.params.id;
+    var filmid = req.params.filmid;
 
     res.contentType('application/json');
 
