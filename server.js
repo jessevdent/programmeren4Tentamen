@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(expressJWT({ secret : config.secretkey })
 	.unless({
-		path: ['/api/v1/login', '/api/v1/register', '/api/v1/films/:filmid']
+		path: ['/api/v1/login', '/api/v1/register', '/api/v1/films']
 	}));
 
 app.set('port', (process.env.PORT | config.webPort));
