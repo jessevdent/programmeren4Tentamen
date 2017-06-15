@@ -28,7 +28,7 @@ routes.get('/films', function(req, res){
         res.json({ error: 'Type is een verplichte parameter.'});
     }
 
-    var query = 'SELECT * FROM  `1033`.`\`' + type + '\``';
+    var query = 'SELECT * FROM \`' + type + '\`';
 
     if((key !== '') && (value !== '')) {
         query += ' WHERE \`' + key + '\`=' + db.escape(value);
