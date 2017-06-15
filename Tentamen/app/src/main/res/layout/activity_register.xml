@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.jesse.tentamen.MainActivity">
 
-
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5">
+
+    <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scrollview1"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="25dip"
         android:layout_gravity="center"
         tools:layout_editor_absoluteY="0dp"
         tools:layout_editor_absoluteX="8dp"
         android:background="@color/colorBackground">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
         <TextView android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -104,7 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dip"
-            android:hint="Email"
+            android:hint="Address"
             android:singleLine="true"
             android:password="true"/>
 
@@ -164,10 +175,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dip"
-            android:hint="PostalCode"
+            android:hint="HouseNumber"
             android:singleLine="true"
             android:password="true"/>
+        </LinearLayout>
+    </ScrollView>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0">
 
         <Button
             android:id="@+id/btnLogin"
@@ -175,14 +193,11 @@
             android:layout_height="wrap_content"
             android:height="60dip"
             android:layout_gravity="center_horizontal"
-
             android:background="@color/colorPrimary"
             android:text="Register"
             android:textColor="@color/colorForeground"/>
 
-
-
-
     </LinearLayout>
-    </ScrollView>
+
+</LinearLayout>
 
