@@ -4,6 +4,7 @@ package com.example.jesse.tentamen;
  * Created by Jesse on 14-6-2017.
  */
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -47,8 +48,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mTvRegister = (TextView) v.findViewById(R.id.tv_register\);
-        mTvRegister.setOnClickListener(view -> goToRegister());
+        mTvRegister = (TextView) findViewById(R.id.link_to_register);
         editTextUsername = (EditText) findViewById(R.id.edittextUsername);
         editTextPassword = (EditText) findViewById(R.id.edittextPassword);
         txtLoginErrorMsg = (TextView) findViewById(R.id.txtLoginErrorMessage);
@@ -63,6 +63,15 @@ public class LoginActivity extends AppCompatActivity {
                 // TODO Checken of username en password niet leeg zijn
 
                 handleLogin(mUsername, mPassword);
+            }
+        });
+
+        mTvRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent register = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(register);
             }
         });
     }
@@ -175,4 +184,6 @@ public class LoginActivity extends AppCompatActivity {
     public void displayMessage(String toastString){
         Toast.makeText(getApplicationContext(), toastString, Toast.LENGTH_LONG).show();
     }
+
+
 }
