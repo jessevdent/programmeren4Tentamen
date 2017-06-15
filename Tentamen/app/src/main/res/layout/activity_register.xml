@@ -71,8 +71,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dip"
             android:hint="FirstName"
-            android:singleLine="true"
-            android:password="true"/>
+            android:singleLine="true" />
 
         <TextView android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -86,8 +85,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dip"
             android:hint="Lastname"
-            android:singleLine="true"
-            android:password="true"/>
+            android:singleLine="true" />
 
         <TextView android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -101,8 +99,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dip"
             android:hint="Email"
-            android:singleLine="true"
-            android:password="true"/>
+            android:singleLine="true" />
 
         <TextView android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -116,8 +113,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dip"
             android:hint="Address"
-            android:singleLine="true"
-            android:password="true"/>
+            android:singleLine="true" />
 
         <TextView android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -131,8 +127,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dip"
             android:hint="PostalCode"
-            android:singleLine="true"
-            android:password="true"/>
+            android:singleLine="true" />
 
         <TextView android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -146,8 +141,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dip"
             android:hint="City"
-            android:singleLine="true"
-            android:password="true"/>
+            android:singleLine="true" />
 
         <TextView android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -161,8 +155,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dip"
             android:hint="Country"
-            android:singleLine="true"
-            android:password="true"/>
+            android:singleLine="true" />
 
         <TextView android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -176,8 +169,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dip"
             android:hint="HouseNumber"
-            android:singleLine="true"
-            android:password="true"/>
+            android:singleLine="true" />
         </LinearLayout>
     </ScrollView>
     </LinearLayout>

@@ -84,29 +84,31 @@ public class RegisterActivity extends AppCompatActivity {
                 mCity = city.getText().toString();
                 mCountry = country.getText().toString();
                 mHouseNumber = houseNumber.getText().toString();
+
+                handleRegister(mUsername, mPassword, mFirstName, mLastName, mEmail, mAddress, mPostalCode, mCity, mCountry, mHouseNumber);
             }
         });
 
     }
 
-    private void handleLogin(String username, String password) {
+    private void handleRegister(String username, String password, String firstname, String lastname, String email, String address, String postalcode, String city, String country, String housenumber) {
         //
         // Maak een JSON object met username en password. Dit object sturen we mee
         // als request body (zoals je ook met Postman hebt gedaan)
         //
-        String body = "{\"username\":\"" + username + "\",\"password\":\"" + password + "\"}";
-        Log.i(TAG, "handleLogin - body = " + body);
+        String body = "{\"username\":\"" + username + "\",\"password\":\"" + password + "\", \"first_name\":\"" + firstname + "\", \"last_name\":\"" + lastname + "\", \"email\":\"" + email + "\", \"address\":\"" + address + "\", \"postal_code\":\"" + postalcode + "\", \"city\":\"" + city + "\", \"country\":\"" + country + "\", \"house_number\":\"" + housenumber + "\"}";
+        Log.i(TAG, "handleRegister - body = " + body);
 
         try {
             JSONObject jsonBody = new JSONObject(body);
             JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                    (Request.Method.POST, Config.URL_LOGIN, jsonBody, new Response.Listener<JSONObject>() {
+                    (Request.Method.POST, Config.URL_REGISTER, jsonBody, new Response.Listener<JSONObject>() {
 
                         @Override
                         public void onResponse(JSONObject response) {
                             // Succesvol response - dat betekent dat we een geldig token hebben.
                             // txtLoginErrorMsg.setText("Response: " + response.toString());
-                            displayMessage("Succesvol ingelogd!");
+                            displayMessage("Succesvol geregistreerd!");
 
                             // We hebben nu het token. We kiezen er hier voor om
                             // het token in SharedPreferences op te slaan. Op die manier
@@ -114,13 +116,6 @@ public class RegisterActivity extends AppCompatActivity {
                             // totdat het token expired.
                             try {
                                 String token = response.getString("token");
-
-                                Context context = getApplicationContext();
-                                SharedPreferences sharedPref = context.getSharedPreferences(
-                                        getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = sharedPref.edit();
-                                editor.putString(getString(R.string.saved_token), token);
-                                editor.commit();
 
                                 // Start the main activity, and close the login activity
                                 Intent main = new Intent(getApplicationContext(), MainActivity.class);
@@ -149,7 +144,7 @@ public class RegisterActivity extends AppCompatActivity {
             // Access the RequestQueue through your singleton class.
             VolleyRequestQueue.getInstance(this).addToRequestQueue(jsObjRequest);
         } catch (JSONException e) {
-            txtLoginErrorMsg.setText(e.getMessage());
+            //txtLoginErrorMsg.setText(e.getMessage());
             // e.printStackTrace();
         }
         return;
@@ -174,7 +169,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         } else if(error instanceof com.android.volley.NoConnectionError) {
             Log.e(TAG, "handleErrorResponse: server was niet bereikbaar");
-            txtLoginErrorMsg.setText(getString(R.string.error_server_offline));
+            //txtLoginErrorMsg.setText(getString(R.string.error_server_offline));
         } else {
             Log.e(TAG, "handleErrorResponse: error = " + error);
         }
@@ -198,4 +193,4 @@ public class RegisterActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), toastString, Toast.LENGTH_LONG).show();
     }
 }
-}
+
