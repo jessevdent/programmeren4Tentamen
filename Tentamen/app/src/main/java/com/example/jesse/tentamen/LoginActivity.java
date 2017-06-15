@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editTextUsername;
     private EditText editTextPassword;
     private TextView txtLoginErrorMsg;
+    private TextView mTvRegister;
     private Button btnLogin;
 
     private String mUsername;
@@ -46,7 +47,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mTvRegister = (TextView) v.findViewById(R.id.tv_register\);
+        mTvRegister.setOnClickListener(view -> goToRegister());
         editTextUsername = (EditText) findViewById(R.id.edittextUsername);
         editTextPassword = (EditText) findViewById(R.id.edittextPassword);
         txtLoginErrorMsg = (TextView) findViewById(R.id.txtLoginErrorMessage);
