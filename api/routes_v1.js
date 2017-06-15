@@ -14,6 +14,43 @@ routes.get('/goodbye', function(req, res){
 	res.json({ 'tekst': 'Goodbye!'});
 });
 
+routes.get('/films', function(req, res){
+
+    var type = req.query.type;
+    var key = req.query.key || '';
+    var value = req.query.value || '';
+    var limit = req.query.limit;
+
+    res.contentType('application/json');
+
+    if(type === undefined || type === '') {
+        res.status(400);
+        res.json({ error: 'Type is een verplichte parameter.'});
+    }
+
+    var query = 'SELECT * FROM \`' + type + '\`';
+
+    if((key !== '') && (value !== '')) {
+        query += ' WHERE \`' + key + '\`=' + db.escape(value);
+    }
+
+    if(limit !== undefined) {
+        query += ' LIMIT ' + limit;
+    }
+
+    console.log('Onze query: ' + query);
+    +
+
+        db.query(query, function(error, rows, fields) {
+            if (error) {
+                res.status(400);
+                res.json(error);
+            } else {
+                res.status(200);
+                res.json(rows);
+            };
+        });
+});
 
 routes.get('/films/:filmid', function(req, res){
 
