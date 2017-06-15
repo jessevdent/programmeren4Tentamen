@@ -32,5 +32,22 @@ routes.get('/films/:filmid', function(req, res){
     });
 });
 
+routes.get('/rentals/:userid', function(req, res){
+
+    var customer_id = req.params.userid;
+
+    res.contentType('application/json');
+
+    db.query('SELECT film.title FROM 1033.film,1033.rental, 1033.inventory WHERE customer_id=? AND rental.inventory_id = inventory.inventory_id AND inventory.film_id = film.film_id ', [ customer_id ], function(error, rows, fields) {
+        if (error) {
+            res.status(400);
+            res.json({ error: 'Error while performing Query.'});
+        } else {
+            res.status(200);
+            res.json(rows);
+        };
+    });
+});
+
 
 module.exports = routes;
