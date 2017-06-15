@@ -170,7 +170,7 @@
 
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnRegister"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:height="60dip"
