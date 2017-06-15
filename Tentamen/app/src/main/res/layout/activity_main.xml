@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,47 +9,54 @@
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
-        android:layout_width="368dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:padding="25dip"
+        android:layout_gravity="center"
         tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="8dp">
-
+        tools:layout_editor_absoluteX="8dp"
+        android:background="@color/colorBackground">
 
         <TextView android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textColor="#372c24"
-            android:text="Username"/>
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/colorForeground"
+            android:text="Username:"/>
 
         <EditText android:layout_width="fill_parent"
             android:id="@+id/edittextUsername"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dip"
+            android:hint="Username"
             android:layout_marginBottom="20dip"
-            android:singleLine="true"/>
-
+            android:singleLine="true" />
 
         <TextView android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textColor="#372c24"
-            android:text="Password"/>
+            android:layout_gravity="center_horizontal"
+            android:text="Password:"
+            android:textColor="@color/colorForeground"/>
 
         <EditText android:layout_width="fill_parent"
             android:id="@+id/edittextPassword"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dip"
+            android:hint="Password"
             android:singleLine="true"
             android:password="true"/>
-
 
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:height="60dip"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="130dip"
-            android:text="Login"/>
-
+            android:background="@color/colorPrimary"
+            android:text="Login"
+            android:textColor="@color/colorForeground"/>
 
         <TextView android:id="@+id/link_to_register"
             android:layout_width="fill_parent"
@@ -65,9 +72,9 @@
             android:id="@+id/txtLoginErrorMessage"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:textColor="#372c24"/>
 
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
-
+</LinearLayout>
