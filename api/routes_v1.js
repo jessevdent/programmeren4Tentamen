@@ -55,9 +55,10 @@ routes.get('/films/:count/:start', function(req, res){
 
     res.contentType('application/json');
 
-    var query = {sql: 'SELECT * FROM film ORDER BY `film_id` ASC LIMIT ?  OFFSET ?',
+    var query = {
+        sql: 'SELECT * FROM `1033`.`film` ORDER BY `film_id` ASC LIMIT ?  OFFSET ?',
         values: [limit, offset],
-        timeout: 2000}
+        timeout: 2000};
 
     db.query(query, function(error, rows, fields) {
         if (error) {
