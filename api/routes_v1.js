@@ -56,7 +56,7 @@ routes.get('/films/:count/:start', function(req, res){
     res.contentType('application/json');
     console.log(req.params);
     var query = {
-        sql: 'SELECT * FROM film ORDER BY `film_id` ASC LIMIT ? OFFSET ? ',
+        sql: 'SELECT * FROM film ORDER BY film_id ASC LIMIT ? OFFSET ? ',
         values: [limit, offset],
         timeout: 2000};
 
