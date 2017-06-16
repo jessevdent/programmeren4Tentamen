@@ -48,5 +48,23 @@ routes.get('/rentals/:userid', function(req, res){
     });
 });
 
+routes.get('/films/:count/:offset', function(req, res){
+
+    var offset = req.params.offset;
+    var count = req.params.count;
+
+    res.contentType('application/json');
+
+    db.query('SELECT * FROM `1033`.`film` ORDER BY `film_id` ASC LIMIT=?  OFFSET=?;', [ count, offset ], function(error, rows, fields) {
+        if (error) {
+            res.status(400);
+            res.json({ error: 'Error while performing Query.'});
+        } else {
+            res.status(200);
+            res.json(rows);
+        };
+    });
+});
+
 
 module.exports = routes;
