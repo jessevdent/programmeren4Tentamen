@@ -48,7 +48,7 @@ routes.get('/rentals/:userid', function(req, res){
     });
 });
 
-routes.get('/films/:count/:start', function(req, res){
+routes.get('/film/:count/:start', function(req, res){
 
     var limit = req.params.count;
     var offset = req.params.start;
