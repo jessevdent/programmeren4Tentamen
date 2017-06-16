@@ -55,7 +55,7 @@ routes.get('/film/:limit/:offset', function(req, res){
 
     res.contentType('application/json');
 
-    db.query('SELECT * FROM `1033`.`film` ORDER BY `film_id` ASC LIMIT ? OFFSET ?', [limit, offset], function(error, rows, fields) {
+    db.query('SELECT * FROM `1033`.`film` ORDER BY `film_id` ASC LIMIT=? OFFSET=?', [limit, offset], function(error, rows, fields) {
         if (error) {
             res.status(400);
             res.json({ error: 'Error while performing Query.'});
@@ -66,17 +66,16 @@ routes.get('/film/:limit/:offset', function(req, res){
     });
 });
 
-routes.post('/rentals/:userid/:inventoryid', function(req, res) {
+routes.post('/rentals/insert', function(req, res) {
 
-    var userid = req.params.userid;
-    var inventoryid = req.params.inventoryid;
-
+    var rentals = req.body;
     var query = {
         sql: 'INSERT INTO 10331.rental(rental_date, inventory_id, customer_id) VALUES(CURRENT_TIMESTAMP, ?, ?)',
-        values: [userid, inventoryid],
+        values: [rentals.userid, rentals.inventoryid],
         timeout: 2000
     };
 
+    console.dir(rentals);
     console.log('Onze query: ' + query.sql);
 
     res.contentType('application/json');
