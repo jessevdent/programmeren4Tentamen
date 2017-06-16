@@ -115,15 +115,13 @@ public class RegisterActivity extends AppCompatActivity {
                             // is het token tussen app-stop en -herstart beschikbaar -
                             // totdat het token expired.
                             try {
-                                String token = response.getString("token");
+                                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
 
-                                // Start the main activity, and close the login activity
-                                Intent main = new Intent(getApplicationContext(), MainActivity.class);
-                                startActivity(main);
-                                // Close the current activity
+                                login.putExtra("username", mUsername);
+                                startActivity(login);
                                 finish();
 
-                            } catch (JSONException e) {
+                            } catch (Exception e) {
                                 // e.printStackTrace();
                                 Log.e(TAG, e.getMessage());
                             }

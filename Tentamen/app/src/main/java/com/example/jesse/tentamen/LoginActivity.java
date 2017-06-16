@@ -52,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextUsername = (EditText) findViewById(R.id.edittextUsername);
         editTextPassword = (EditText) findViewById(R.id.edittextPassword);
         txtLoginErrorMsg = (TextView) findViewById(R.id.txtLoginErrorMessage);
+        editTextUsername.setText(getIntent().getStringExtra("username"));
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
