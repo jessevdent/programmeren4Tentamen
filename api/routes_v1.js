@@ -64,7 +64,8 @@ routes.get('/film/:count/:start', function(req, res){
     db.query(query, function(error, rows, fields) {
         if (error) {
             res.status(400)
-            res.json({error: 'Error while performing Query.'});
+            res.json({error: 'Error while performing Query.'})
+            console.log(error);
         } else {
             res.status(200)
             res.json({ result: rows });
