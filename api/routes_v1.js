@@ -68,14 +68,15 @@ routes.get('/film/:limit/:offset', function(req, res){
 
 routes.post('/rentals/:userid/:inventoryid', function(req, res) {
 
-    var rentals = req.body;
+    var userid = req.params.userid;
+    var inventoryid = req.params.inventoryid;
+
     var query = {
         sql: 'INSERT INTO 10331.rental(rental_date, inventory_id, customer_id) VALUES(CURRENT_TIMESTAMP, ?, ?)',
-        values: [rentals.userid, rentals.inventoryid],
+        values: [userid, inventoryid],
         timeout: 2000
     };
 
-    console.dir(rentals);
     console.log('Onze query: ' + query.sql);
 
     res.contentType('application/json');
