@@ -92,10 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void handleRegister(String username, String password, String firstname, String lastname, String email, String address, String postalcode, String city, String country, String housenumber) {
-        //
-        // Maak een JSON object met username en password. Dit object sturen we mee
-        // als request body (zoals je ook met Postman hebt gedaan)
-        //
+
         String body = "{\"username\":\"" + username + "\",\"password\":\"" + password + "\", \"first_name\":\"" + firstname + "\", \"last_name\":\"" + lastname + "\", \"email\":\"" + email + "\", \"address\":\"" + address + "\", \"postal_code\":\"" + postalcode + "\", \"city\":\"" + city + "\", \"country\":\"" + country + "\", \"house_number\":\"" + housenumber + "\"}";
         Log.i(TAG, "handleRegister - body = " + body);
 
@@ -106,14 +103,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                         @Override
                         public void onResponse(JSONObject response) {
-                            // Succesvol response - dat betekent dat we een geldig token hebben.
-                            // txtLoginErrorMsg.setText("Response: " + response.toString());
+
                             displayMessage("Succesvol geregistreerd!");
 
-                            // We hebben nu het token. We kiezen er hier voor om
-                            // het token in SharedPreferences op te slaan. Op die manier
-                            // is het token tussen app-stop en -herstart beschikbaar -
-                            // totdat het token expired.
                             try {
                                 Intent login = new Intent(getApplicationContext(), LoginActivity.class);
 
@@ -127,7 +119,7 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         }
                     }, new Response.ErrorListener() {
-
+ 
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             handleErrorResponse(error);
