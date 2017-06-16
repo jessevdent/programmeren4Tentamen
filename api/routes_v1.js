@@ -55,16 +55,18 @@ routes.get('/films/:count/:start', function(req, res){
 
     res.contentType('application/json');
 
-    db.query('SELECT * FROM `1033`.`film` ORDER BY `film_id` ASC LIMIT ?  OFFSET ?', [ limit, offset ], function(error, rows, fields) {
+    var query = {sql: 'SELECT * FROM `1033`.`film` ORDER BY `film_id` ASC LIMIT ?  OFFSET ?',
+        values: [limit, offset],
+        timeout: 2000}
+
+    db.query(query, function(error, rows, fields) {
         if (error) {
-            res.status(400);
-            res.json({ error: 'Error while performing Query.'});
+            res.status(401)
+            res.json({error: 'Error while performing Query.'});
         } else {
-            res.status(200);
-            res.json(rows);
+            res.status(200)
+            res.json({ result: rows });
         };
     });
 });
-
-
 module.exports = routes;
