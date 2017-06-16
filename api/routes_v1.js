@@ -48,14 +48,14 @@ routes.get('/rentals/:userid', function(req, res){
     });
 });
 
-routes.get('/film', function(req, res){
-/*
-    var limit = req.params.count;
-    var offset = req.params.start;
-*/
+routes.get('/film/:limit/:offset', function(req, res){
+
+    var limit = req.params.limit;
+    var offset = req.params.offset;
+
     res.contentType('application/json');
-       
-    db.query('SELECT * FROM `1033`.`film` ORDER BY `film_id` ASC LIMIT 5 OFFSET 10', function(error, rows, fields) {
+
+    db.query('SELECT * FROM `1033`.`film` ORDER BY `film_id` ASC LIMIT ? OFFSET ?', [limit, offset], function(error, rows, fields) {
         if (error) {
             res.status(400);
             res.json({ error: 'Error while performing Query.'});
