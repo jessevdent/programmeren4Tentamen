@@ -63,7 +63,7 @@ routes.get('/film/:count/:start', function(req, res){
 
     db.query(query, function(error, rows, fields) {
         if (error) {
-            res.status(401)
+            res.status(400)
             res.json({error: 'Error while performing Query.'});
         } else {
             res.status(200)
