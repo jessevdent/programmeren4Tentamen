@@ -66,4 +66,26 @@ routes.get('/film/:limit/:offset', function(req, res){
     });
 });
 
+routes.post('/rentals/:userid/:inventoryid', function(req, res) {
+
+    var rentals = req.body;
+    var query = {
+        sql: 'INSERT INTO 10331.rental(rental_date, inventory_id, customer_id) VALUES(CURRENT_TIMESTAMP, ?, ?)',
+        values: [rentals.userid, rentals.inventoryid],
+        timeout: 2000
+    };
+
+    console.dir(rentals);
+    console.log('Onze query: ' + query.sql);
+
+    res.contentType('application/json');
+    db.query(query, function(error, rows, fields) {
+        if (error) {
+            res.status(401).json(error);
+        } else {
+            res.status(200).json({ result: rows });
+        };
+    });
+});
+
 module.exports = routes;
