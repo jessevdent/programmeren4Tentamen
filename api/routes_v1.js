@@ -66,12 +66,14 @@ routes.get('/film/:limit/:offset', function(req, res){
     });
 });
 
-routes.post('/rentals/insert', function(req, res) {
+routes.post('/rentals/:userid/:inventoryid', function(req, res) {
 
-    var rentals = req.body;
+    var user_id = req.params.userid;
+    var inventory_id = req.params.inventoryid;
+
     var query = {
         sql: 'INSERT INTO `1033`.`rental`(`rental_date`, `inventory_id`, `customer_id`) VALUES(CURRENT_TIMESTAMP, ?, ?)',
-        values: [rentals.inventoryid, rentals.userid],
+        values: [inventory_id, user_id],
         timeout: 2000
     };
 
