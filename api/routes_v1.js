@@ -90,12 +90,15 @@ routes.post('/rentals/:userid/:inventoryid', function(req, res) {
     });
 });
 
-routes.put('/rentals/update', function(req, res) {
+routes.put('/rentals/:userid/:inventoryid', function(req, res) {
 
+    var user_id = req.params.userid;
+    var inventory_id = req.params.inventoryid;
     var rentals = req.body;
+
     var query = {
         sql: 'UPDATE `1033`.`rental` SET `staff_id` = ?, `return_date` = ? WHERE `inventory_id` = ? AND `customer_id` = ?',
-        values: [rentals.staffid, rentals.returndate, rentals.inventoryid, rentals.userid],
+        values: [rentals.staffid, rentals.returndate, inventory_id, user_id],
         timeout: 2000
     };
 
@@ -112,12 +115,13 @@ routes.put('/rentals/update', function(req, res) {
     });
 });
 
-routes.delete('/rentals/delete', function(req, res) {
+routes.delete('/rentals/:userid/:inventoryid', function(req, res) {
 
-    var rentals = req.body;
+    var user_id = req.params.userid;
+    var inventory_id = req.params.inventoryid;
     var query = {
         sql: 'DELETE FROM `1033`.`rental` WHERE `inventory_id` = ? AND `customer_id` = ?',
-        values: [rentals.inventoryid, rentals.userid],
+        values: [inventory_id, user_id],
         timeout: 2000
     };
 
