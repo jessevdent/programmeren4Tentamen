@@ -14,6 +14,24 @@ routes.get('/goodbye', function(req, res){
 	res.json({ 'tekst': 'Goodbye!'});
 });
 
+routes.get('/film/:limit/:offset', function(req, res){
+
+    var limit_nr = req.params.limit;
+    var offset_nr = req.params.offset;
+
+    res.contentType('application/json');
+
+    db.query('SELECT * FROM `1033`.`film` ORDER BY `film_id` ASC LIMIT ? OFFSET ?', [ limit_nr, offset_nr ], function(error, rows, fields) {
+        if (error) {
+            res.status(400);
+            res.json({ error: 'Error while performing Query.'});
+        } else {
+            res.status(200);
+            res.json(rows);
+        };
+    });
+});
+
 routes.get('/films/:filmid', function(req, res){
 
     var film_id = req.params.filmid;
@@ -48,23 +66,6 @@ routes.get('/rentals/:userid', function(req, res){
     });
 });
 
-routes.get('/film/:limit/:offset', function(req, res){
-
-    var limit = req.params.limit;
-    var offset = req.params.offset;
-
-    res.contentType('application/json');
-
-    db.query('SELECT * FROM `1033`.`film` ORDER BY `film_id` ASC LIMIT=? OFFSET=?', [limit, offset], function(error, rows, fields) {
-        if (error) {
-            res.status(400);
-            res.json({ error: 'Error while performing Query.'});
-        } else {
-            res.status(200);
-            res.json(rows);
-        };
-    });
-});
 
 routes.post('/rentals/:userid/:inventoryid', function(req, res) {
 
