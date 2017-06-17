@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         // eerst opnieuw inloggen.
         if(tokenAvailable()){
             setContentView(R.layout.activity_success);
+
             final Button button = (Button) findViewById(R.id.btnLogin);
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {

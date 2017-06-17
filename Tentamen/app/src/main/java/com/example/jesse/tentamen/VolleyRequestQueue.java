@@ -14,6 +14,15 @@ import com.android.volley.toolbox.HurlStack;
  * Created by Jesse on 14-6-2017.
  */
 
+
+import android.app.Application;
+import android.text.TextUtils;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.Volley;
+
 public class VolleyRequestQueue {
 
     private static VolleyRequestQueue mInstance;
@@ -60,6 +69,10 @@ public class VolleyRequestQueue {
 
     public <T> void addToRequestQueue(Request<T> req) {
         getRequestQueue().add(req);
+    }
+
+    public static synchronized VolleyRequestQueue getInstance() {
+        return mInstance;
     }
 
 }
