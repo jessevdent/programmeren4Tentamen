@@ -125,7 +125,6 @@ routes.delete('/rentals/:userid/:inventoryid', function(req, res) {
         timeout: 2000
     };
 
-    console.dir(rentals);
     console.log('Onze query: ' + query.sql);
 
     res.contentType('application/json');
