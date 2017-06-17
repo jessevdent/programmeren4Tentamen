@@ -88,4 +88,26 @@ routes.post('/rentals/insert', function(req, res) {
     });
 });
 
+routes.put('/rentals/update', function(req, res) {
+
+    var rentals = req.body;
+    var query = {
+        sql: 'UPDATE `1033`.`rental` SET `staff_id` = ?, `return_date` = ? WHERE `inventory_id` = ?, `customer_id` = ?)',
+        values: [rentals.staffid, rentals.returndate, rentals.inventoryid, rentals.userid],
+        timeout: 2000
+    };
+
+    console.dir(rentals);
+    console.log('Onze query: ' + query.sql);
+
+    res.contentType('application/json');
+    db.query(query, function(error, rows, fields) {
+        if (error) {
+            res.status(401).json(error);
+        } else {
+            res.status(200).json({ result: rows });
+        };
+    });
+});
+
 module.exports = routes;
