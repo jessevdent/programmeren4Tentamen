@@ -92,7 +92,7 @@ routes.put('/rentals/update', function(req, res) {
 
     var rentals = req.body;
     var query = {
-        sql: 'UPDATE `1033`.`rental` SET `staff_id` = ?, `return_date` = ? WHERE `inventory_id` = ?, `customer_id` = ?)',
+        sql: 'UPDATE `1033`.`rental` SET `staff_id` = ?, `return_date` = ? WHERE `inventory_id` = ?, `customer_id` = ?',
         values: [rentals.staffid, rentals.returndate, rentals.inventoryid, rentals.userid],
         timeout: 2000
     };
