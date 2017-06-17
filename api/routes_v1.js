@@ -71,13 +71,13 @@ routes.post('/rentals/:userid/:inventoryid', function(req, res) {
     var user_id = req.params.userid;
     var inventory_id = req.params.inventoryid;
 
+    res.contentType('application/json');
     var query = {
         sql: 'INSERT INTO `1033`.`rental`(`rental_date`, `inventory_id`, `customer_id`) VALUES(CURRENT_TIMESTAMP, ?, ?)',
         values: [inventory_id, user_id],
         timeout: 2000
     };
 
-    console.dir(rentals);
     console.log('Onze query: ' + query.sql);
 
     res.contentType('application/json');
