@@ -110,4 +110,25 @@ routes.put('/rentals/update', function(req, res) {
     });
 });
 
+routes.delete('/rentals/delete', function(req, res) {
+
+    var rentals = req.body;
+    var query = {
+        sql: 'DELETE FROM `1033`.`rental` WHERE `inventory_id` = ? AND `customer_id` = ?',
+        values: [rentals.inventoryid, rentals.userid],
+        timeout: 2000
+    };
+
+    console.dir(rentals);
+    console.log('Onze query: ' + query.sql);
+
+    res.contentType('application/json');
+    db.query(query, function(error, rows, fields) {
+        if (error) {
+            res.status(401).json(error);
+        } else {
+            res.status(200).json({ result: rows });
+        };
+    });
+});
 module.exports = routes;
