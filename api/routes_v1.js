@@ -14,22 +14,35 @@ routes.get('/goodbye', function(req, res){
 	res.json({ 'tekst': 'Goodbye!'});
 });
 
-routes.get('/film/:limit/:offset', function(req, res){
+routes.get('/films', function(req, res){
 
-    var limit_nr = req.params.limit;
-    var offset_nr = req.params.offset;
+    var limit = req.query.limit;
+    var offset = req.query.offset;
 
     res.contentType('application/json');
 
-    db.query('SELECT * FROM `1033`.`film` ORDER BY `film_id` ASC LIMIT ? OFFSET ?', [ limit_nr, offset_nr ], function(error, rows, fields) {
-        if (error) {
-            res.status(400);
-            res.json({ error: 'Error while performing Query.'});
-        } else {
-            res.status(200);
-            res.json(rows);
-        };
-    });
+    var query = 'SELECT * FROM `1033`.`film` ORDER BY `film_id` ASC';
+
+    if(limit !== undefined) {
+        query += ' LIMIT ' + limit;
+    }
+
+    if(offset !== undefined) {
+        query += ' OFFSET ' + offset;
+    }
+
+    console.log('Onze query: ' + query);
+    +
+
+        db.query(query, function(error, rows, fields) {
+            if (error) {
+                res.status(400);
+                res.json(error);
+            } else {
+                res.status(200);
+                res.json(rows);
+            };
+        });
 });
 
 routes.get('/films/:filmid', function(req, res){
