@@ -50,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
                     editor.remove(getString(R.string.saved_token));
                     editor.commit();
                     setContentView(R.layout.activity_main);
+
+                    listViewToDos = (ListView) findViewById(R.id.listViewToDos);
+                    listViewToDos.setOnItemClickListener(this);
+                    todoAdapter = new ToDoAdapter(this, getLayoutInflater(), toDos);
+                    listViewToDos.setAdapter(todoAdapter);
                 }
             });
             //
