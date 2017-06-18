@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.remove(getString(R.string.saved_token));
                     editor.commit();
                     setContentView(R.layout.activity_main);
+
                 }
             });
             //

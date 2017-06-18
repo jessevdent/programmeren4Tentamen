@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -22,6 +23,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -30,14 +32,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 
-public class MovieActivity extends Activity {
+public class MovieActivity extends Activity implements AdapterView.OnItemClickListener{
     // Log tag
     private static final String TAG = MainActivity.class.getSimpleName();
 
     // Movies json url
     private static final String url = "https://tentamenprogrammeren4js.herokuapp.com/api/v1/films?limit=20&offset=10";
     private ProgressDialog pDialog;
-    private List<Item> itemList = new ArrayList<Item>();
+    private ArrayList<Item> itemList = new ArrayList();
     private ListView listView;
     private CustomListAdapter adapter;
 
@@ -57,9 +59,12 @@ public class MovieActivity extends Activity {
                 setContentView(R.layout.activity_main);
             }
         });
+
+
         System.out.println("1");
         listView = (ListView) findViewById(R.id.listview);
         adapter = new CustomListAdapter(this, itemList);
+        listView.setOnItemClickListener(this);
         listView.setAdapter(adapter);
 
         System.out.println("2");
@@ -90,6 +95,7 @@ public class MovieActivity extends Activity {
                                 item.setLength(obj.getString("length"));
                                 item.setRating(obj.getString("rating"));
                                 item.setSpecialfeatures(obj.getString("special_features"));
+
 
 
 
@@ -130,6 +136,15 @@ public class MovieActivity extends Activity {
             pDialog.dismiss();
             pDialog = null;
         }
+    }
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.i(TAG, "Position " + position + " is geselecteerd");
+
+        Item item = itemList.get(position);
+        Intent intent = new Intent(getApplicationContext(), DetailedActivity.class);
+        intent.putExtra("ITEMS", itemList);
+        startActivity(intent);
     }
 
 

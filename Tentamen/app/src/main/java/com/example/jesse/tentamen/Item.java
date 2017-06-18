@@ -1,12 +1,14 @@
 package com.example.jesse.tentamen;
 
+import java.io.Serializable;
+
 /**
  * Created by Jesse on 17-6-2017.
  */
 
 
 
-public class Item {
+public class Item implements Serializable {
     private String title, description, releaseyear, languageid, originallanguageid, rentalduratiom, rentalrate, length, replacementcost, rating, specialfeatures, lastupdate;
     private int filmid;
     //private double rating;
