@@ -12,7 +12,7 @@ describe('Hello Test', function() {
             .set({	"Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0OTgxMzY0OTgsImlhdCI6MTQ5NzUzMTY5OCwic3ViIjoiVGVzdDEifQ.n93eyWMgdY5bVnTRdEeBzceolmLwu_pRsJ-w_9i5C7g"})
  			.end(function(err, res) {
 				 res.should.have.status(200);
-				 res.body.should.be.a('array');
+				 res.body.should.be.a('object');
                  res.body.should.have.property('tekst');
                  res.body.tekst.should.equal('Hello!');
 				 done();
@@ -27,7 +27,7 @@ describe('Goodbye Test', function() {
             .set({	"Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0OTgxMzY0OTgsImlhdCI6MTQ5NzUzMTY5OCwic3ViIjoiVGVzdDEifQ.n93eyWMgdY5bVnTRdEeBzceolmLwu_pRsJ-w_9i5C7g"})
             .end(function(err, res) {
                 res.should.have.status(200);
-                res.body.should.be.a('array');
+                res.body.should.be.a('object');
                 res.body.should.have.property('tekst');
                 res.body.tekst.should.equal('Goodbye!');
                 done();
