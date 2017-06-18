@@ -9,9 +9,12 @@ describe('Hello Test', function() {
  	it('Test GET /api/v1/hello', function(done) {
  		chai.request(server)
  			.get('/api/v1/hello')
+            .send({	"Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0OTgxMzY0OTgsImlhdCI6MTQ5NzUzMTY5OCwic3ViIjoiVGVzdDEifQ.n93eyWMgdY5bVnTRdEeBzceolmLwu_pRsJ-w_9i5C7g"})
  			.end(function(err, res) {
 				 res.should.have.status(200);
 				 res.body.should.be.a('array');
+                 res.body.should.have.property('tekst');
+                 res.body.tekst.should.equal('Hello!');
 				 done();
  			});
  	});
@@ -21,9 +24,12 @@ describe('Goodbye Test', function() {
     it('Test GET /api/v1/goodbye', function(done) {
         chai.request(server)
             .get('/api/v1/goodbye')
+            .send({	"Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0OTgxMzY0OTgsImlhdCI6MTQ5NzUzMTY5OCwic3ViIjoiVGVzdDEifQ.n93eyWMgdY5bVnTRdEeBzceolmLwu_pRsJ-w_9i5C7g"})
             .end(function(err, res) {
                 res.should.have.status(200);
                 res.body.should.be.a('array');
+                res.body.should.have.property('tekst');
+                res.body.tekst.should.equal('Goodbye!');
                 done();
             });
     });
@@ -107,6 +113,7 @@ describe('Film Limit & Offset Test', function() {
     it('Test GET /api/v1/films?limit=1&offset=0', function(done) {
         chai.request(server)
             .get('/api/v1/films?limit=1&offset=0')
+            .send({	"Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0OTgxMzY0OTgsImlhdCI6MTQ5NzUzMTY5OCwic3ViIjoiVGVzdDEifQ.n93eyWMgdY5bVnTRdEeBzceolmLwu_pRsJ-w_9i5C7g"})
             .end(function(err, res) {
                 res.should.have.status(200);
                 res.body.should.be.a('object');
@@ -187,6 +194,7 @@ describe('Rentals Test', function() {
     it('Test GET /api/v1/rentals/2', function(done) {
         chai.request(server)
             .get('/api/v1/rentals/2')
+            .send({	"Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0OTgxMzY0OTgsImlhdCI6MTQ5NzUzMTY5OCwic3ViIjoiVGVzdDEifQ.n93eyWMgdY5bVnTRdEeBzceolmLwu_pRsJ-w_9i5C7g"})
             .end(function(err, res) {
                 res.should.have.status(200);
                 res.body.should.be.a('array');
@@ -208,6 +216,7 @@ describe('New Rental Test', function() {
 it('Test post /api/v1/rentals/45/1', function(done) {
     chai.request(server)
         .post('/api/v1/rentals/45/1')
+        .send({	"Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0OTgxMzY0OTgsImlhdCI6MTQ5NzUzMTY5OCwic3ViIjoiVGVzdDEifQ.n93eyWMgdY5bVnTRdEeBzceolmLwu_pRsJ-w_9i5C7g"})
         .end(function(err, res){
             res.should.have.status(200);
             res.should.be.json;
@@ -242,7 +251,7 @@ describe('Adjust Rental Test', function() {
     it('Test put /api/v1/rentals/45/1', function(done) {
         chai.request(server)
             .put('/api/v1/rentals/45/1')
-            .send({	'staffid': 2, 'returndate': '2017-10-10 10:10:10' })
+            .send({	'staffid': 2, 'returndate': '2017-10-10 10:10:10', "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0OTgxMzY0OTgsImlhdCI6MTQ5NzUzMTY5OCwic3ViIjoiVGVzdDEifQ.n93eyWMgdY5bVnTRdEeBzceolmLwu_pRsJ-w_9i5C7g" })
             .end(function(err, res){
                 res.should.have.status(200);
                 res.should.be.json;
@@ -278,6 +287,7 @@ describe('Delete Rental Test', function() {
     it('Test delete /api/v1/rentals/45/1', function(done) {
         chai.request(server)
             .delete('/api/v1/rentals/45/1')
+            .send({	"Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0OTgxMzY0OTgsImlhdCI6MTQ5NzUzMTY5OCwic3ViIjoiVGVzdDEifQ.n93eyWMgdY5bVnTRdEeBzceolmLwu_pRsJ-w_9i5C7g"})
             .end(function(err, res){
                 res.should.have.status(200);
                 res.should.be.json;
