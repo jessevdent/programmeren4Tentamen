@@ -24,6 +24,7 @@
 
          <activity android:name=".RegisterActivity">        </activity>
         <activity android:name=".MovieActivity">        </activity>
+        <activity android:name=".DetailedActivity">        </activity>
     </application>
 
 </manifest>

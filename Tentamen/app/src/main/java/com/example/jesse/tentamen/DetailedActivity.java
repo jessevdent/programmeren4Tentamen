@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,7 +19,8 @@ public class DetailedActivity extends AppCompatActivity
 {
     TextView titleView, realeaseView, lengthView, ratingView, featuresView;
     //Button ticketKnop;
-    Item thisItem;
+    public final String TAG = this.getClass().getSimpleName();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,32 +28,28 @@ public class DetailedActivity extends AppCompatActivity
         setContentView(R.layout.activity_detailed);
 
 
-        Intent intent = getIntent();
-        thisItem = (Item) intent.getSerializableExtra("ITEM");
 
-        titleView = (TextView) findViewById(R.id.Title);
-        titleView.setText("Titel: " + thisItem.getTitle());
-
+        titleView = (TextView) findViewById(R.id.title);
         realeaseView = (TextView) findViewById(R.id.release_year);
-        realeaseView.setText("Beschrijving: " + thisItem.getReleaseyear());
-
         lengthView = (TextView) findViewById(R.id.length);
-        lengthView.setText("Taal: " + thisItem.getLength());
-
         ratingView = (TextView) findViewById(R.id.rating);
-        ratingView.setText("Releasedate: " + thisItem.getRating());
-
         featuresView = (TextView) findViewById(R.id.special_features);
-        featuresView.setText("Beoordeling: " + thisItem.getSpecialfeatures());
+
+        Bundle extras = getIntent().getExtras();
+
+        Item item = (Item) extras.getSerializable("ITEMS");
+        Log.i(TAG, item.toString());
+
+        titleView.setText("Titel: " + item.getTitle());
+        realeaseView.setText("Beschrijving: " + item.getReleaseyear());
+        lengthView.setText("Taal: " + item.getLength());
+        ratingView.setText("Releasedate: " + item.getRating());
+        featuresView.setText("Beoordeling: " + item.getSpecialfeatures());
 
         //ticketKnop = (Button) findViewById(R.id.TicketKnop);
-        //ticketKnop = (Button) findViewById(R.id.TicketKnop);
+        //ticketKnop = (Button) findViewById(R.id.TicketKnop);*/
     }
 
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
-    }
+
 }
