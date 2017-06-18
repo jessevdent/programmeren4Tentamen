@@ -74,7 +74,6 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
         pDialog.show();
 
 
-
         System.out.println("3");
         // Creating volley request obj
         JsonArrayRequest movieReq = new JsonArrayRequest(url,
