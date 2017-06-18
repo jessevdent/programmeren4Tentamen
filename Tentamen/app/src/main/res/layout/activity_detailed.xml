@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:textColor="@color/colorForeground"
+            android:padding="5dp"
+            android:gravity="center"
+            android:background="@color/colorBackground"
+            android:text="TITLE"
+            android:id="@+id/title"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/colorForeground"
+            android:padding="5dp"
+            android:gravity="center"
+            android:background="@color/colorBackground"
+            android:text="DESCRIPTION"
+            android:id="@+id/description"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:textColor="@color/colorForeground"
+            android:padding="5dp"
+            android:gravity="center"
+            android:background="@color/colorBackground"
+            android:text="SPECIAL_FEATURES"
+            android:id="@+id/specialfeatures"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/colorForeground"
+            android:padding="5dp"
+            android:gravity="center"
+            android:background="@color/colorBackground"
+            android:text="RELEASE_YEAR"
+            android:id="@+id/release_year"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/colorForeground"
+            android:padding="5dp"
+            android:gravity="center"
+            android:background="@color/colorBackground"
+            android:text="RATING"
+            android:id="@+id/rating"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/colorForeground"
+            android:padding="5dp"
+            android:gravity="center"
+            android:background="@color/colorBackground"
+            android:text="LENGTH"
+            android:id="@+id/length"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/colorForeground"
+            android:padding="5dp"
+            android:gravity="center"
+            android:background="@color/colorBackground"
+            android:text="RENTAL_DURATION"
+            android:id="@+id/rentalduration"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/colorForeground"
+            android:padding="5dp"
+            android:gravity="center"
+            android:background="@color/colorBackground"
+            android:text="RENTAL_RATE"
+            android:id="@+id/rentalrate"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/colorForeground"
+            android:padding="5dp"
+            android:gravity="center"
+            android:background="@color/colorBackground"
+            android:text="REPLACEMENT_COST"
+            android:id="@+id/replacementcost"/>
+
+    </LinearLayout>
+</LinearLayout>
