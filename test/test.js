@@ -39,16 +39,16 @@ describe('Register Test', function() {
     it('Test post /api/v1/register', function(done) {
         chai.request(server)
             .post('/api/v1/register')
-            .send({	"username": "Mocha",
-                "password": "Chai",
-                "first_name": "Mocha",
-                "last_name": "Chai",
-                "email": "mocha@chai.nl",
-                "address": "MochaChaiLaan",
-                "postal_code": "1234AB",
-                "city": "Breda",
-                "country": "The Netherlands",
-                "house_number": 1  })
+            .send({	username: "Mocha",
+                password: "Chai",
+                first_name: "Mocha",
+                last_name: "Chai",
+                email: "mocha@chai.nl",
+                address: "MochaChaiLaan",
+                postal_code: "1234AB",
+                city: "Breda",
+                country: "The Netherlands",
+                house_number: 1  })
             .end(function(err, res){
                 res.should.have.status(200);
                 res.should.be.json;
