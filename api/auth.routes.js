@@ -20,8 +20,10 @@ routes.post('/login', function(req, res) {
    {
    	if (rows[0].username == username && rows[0].password == password) {
         var token = auth.encodeToken(username);
+        var customer = rows[0].customer_id;
         res.status(200).json({
             "token": token,
+            "Customerid": customer,
         });
     } else {
         console.log('Input: username = ' + username + ', password = ' + password);
