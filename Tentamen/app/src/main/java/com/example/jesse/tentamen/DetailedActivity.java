@@ -17,8 +17,8 @@ import android.widget.TextView;
 
 public class DetailedActivity extends AppCompatActivity
 {
-    TextView titleView, realeaseView, lengthView, ratingView, featuresView;
-    //Button ticketKnop;
+    TextView titleView, realeaseView, lengthView, ratingView, featuresView, descriptionView, rentaldurationView, rentalrateView, replacement;
+    Button rent, handIn;
     public final String TAG = this.getClass().getSimpleName();
 
 
@@ -33,21 +33,41 @@ public class DetailedActivity extends AppCompatActivity
         realeaseView = (TextView) findViewById(R.id.release_year);
         lengthView = (TextView) findViewById(R.id.length);
         ratingView = (TextView) findViewById(R.id.rating);
-        featuresView = (TextView) findViewById(R.id.special_features);
+        featuresView = (TextView) findViewById(R.id.specialfeatures);
+        descriptionView = (TextView) findViewById(R.id.description);
+        rentaldurationView = (TextView) findViewById(R.id.rentalduration);
+        rentalrateView = (TextView) findViewById(R.id.rentalrate);
+        replacement = (TextView) findViewById(R.id.replacementcost);
+
+
 
         Bundle extras = getIntent().getExtras();
+        String title = (String) extras.get("title");
+        String beschrijving = (String) extras.get("beschrijving");
+        String features = (String) extras.get("features");
+        String releaseyear = (String) extras.get("releaseyear");
+        String rating = (String) extras.get("rating");
+        String length = (String) extras.get("length");
+        String duration = (String) extras.get("duration");
+        String rate = (String) extras.get("rate");
+        String cost = (String) extras.get("cost");
+        //Log.i(TAG, item.toString());
 
-        Item item = (Item) extras.getSerializable("ITEMS");
-        Log.i(TAG, item.toString());
+        titleView.setText("Titel: " + title);
+        realeaseView.setText("Release: " + releaseyear);
+        lengthView.setText("Length: " + length);
+        ratingView.setText("Rating: " + rating);
 
-        titleView.setText("Titel: " + item.getTitle());
-        realeaseView.setText("Beschrijving: " + item.getReleaseyear());
-        lengthView.setText("Taal: " + item.getLength());
-        ratingView.setText("Releasedate: " + item.getRating());
-        featuresView.setText("Beoordeling: " + item.getSpecialfeatures());
+        System.out.println(features);
+        featuresView.setText("Features: " + features);
+        descriptionView.setText("Description: " + beschrijving);
+        rentaldurationView.setText("Rental Duration: " + duration);
+        rentalrateView.setText("Rental Rate: " + rate);
+        replacement.setText("Replacement Cost: " + cost);
 
-        //ticketKnop = (Button) findViewById(R.id.TicketKnop);
-        //ticketKnop = (Button) findViewById(R.id.TicketKnop);*/
+
+        rent = (Button) findViewById(R.id.rentbutton);
+        handIn = (Button) findViewById(R.id.handinmovie);
     }
 
 

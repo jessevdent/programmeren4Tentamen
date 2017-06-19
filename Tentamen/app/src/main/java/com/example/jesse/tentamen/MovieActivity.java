@@ -90,12 +90,14 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
                                 JSONObject obj = response.getJSONObject(i);
                                 Item item = new Item();
                                 item.setTitle(obj.getString("title"));
-                                item.setReleaseyear(obj.getString("release_year"));
-                                item.setLength(obj.getString("length"));
-                                item.setRating(obj.getString("rating"));
+                                item.setDescription(obj.getString("description"));
                                 item.setSpecialfeatures(obj.getString("special_features"));
-
-
+                                item.setReleaseyear(obj.getString("release_year"));
+                                item.setRating(obj.getString("rating"));
+                                item.setLength(obj.getString("length"));
+                                item.setRentalduratiom(obj.getString("rental_duration"));
+                                item.setRentalrate(obj.getString("rental_rate"));
+                                item.setReplacementcost(obj.getString("replacement_cost"));
 
 
                                 // adding movie to movies array
@@ -142,7 +144,17 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
 
         Item item = itemList.get(position);
         Intent intent = new Intent(getApplicationContext(), DetailedActivity.class);
-        intent.putExtra("ITEMS", itemList);
+        intent.putExtra("title", item.getTitle());
+        intent.putExtra("beschrijving", item.getDescription());
+        intent.putExtra("features", item.getSpecialfeatures());
+        intent.putExtra("releaseyear", item.getReleaseyear());
+        intent.putExtra("rating", item.getRating());
+        intent.putExtra("length", item.getLength());
+        intent.putExtra("duration", item.getRentalduratiom());
+        intent.putExtra("rate", item.getRentalrate());
+        intent.putExtra("cost", item.getReplacementcost());
+
+
         startActivity(intent);
     }
 
