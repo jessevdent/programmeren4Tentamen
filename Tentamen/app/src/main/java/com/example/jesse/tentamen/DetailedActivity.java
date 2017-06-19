@@ -27,8 +27,6 @@ public class DetailedActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed);
 
-
-
         titleView = (TextView) findViewById(R.id.title);
         realeaseView = (TextView) findViewById(R.id.release_year);
         lengthView = (TextView) findViewById(R.id.length);
@@ -38,8 +36,6 @@ public class DetailedActivity extends AppCompatActivity
         rentaldurationView = (TextView) findViewById(R.id.rentalduration);
         rentalrateView = (TextView) findViewById(R.id.rentalrate);
         replacement = (TextView) findViewById(R.id.replacementcost);
-
-
 
         Bundle extras = getIntent().getExtras();
         String title = (String) extras.get("title");
@@ -65,8 +61,14 @@ public class DetailedActivity extends AppCompatActivity
         rentalrateView.setText("Rental Rate: \n" + "€" + rate + " Per day");
         replacement.setText("Replacement Cost: \n" + "€" + cost);
 
-
         rent = (Button) findViewById(R.id.rentbutton);
+        rent.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v){
+
+            }
+        });
+
     }
 
 
