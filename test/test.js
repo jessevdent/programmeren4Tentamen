@@ -39,21 +39,20 @@ describe('Register Test', function() {
     it('Test post /api/v1/register', function(done) {
         chai.request(server)
             .post('/api/v1/register')
-            .send({	username: "Mocha",
-                password: "Chai",
-                first_name: "Mocha",
-                last_name: "Chai",
-                email: "mocha@chai.nl",
-                address: "MochaChaiLaan",
-                postal_code: "1234AB",
-                city: "Breda",
-                country: "The Netherlands",
-                house_number: 1  })
+            .send({	"username": "Mocha6",
+                "password": "Chai6",
+                "first_name": "Mocha",
+                "last_name": "Chai",
+                "email": "mocha6@chai6.nl",
+                "address": "MochaChaiLaan",
+                "postal_code": "1234AB",
+                "city": "Breda",
+                "country": "The Netherlands",
+                "house_number": 1  })
             .end(function(err, res){
                 res.should.have.status(200);
                 res.should.be.json;
                 res.body.should.be.a('object');
-
                 res.body.should.have.property('result');
                 res.body.result.should.be.a('object');
 
@@ -116,35 +115,34 @@ describe('Film Limit & Offset Test', function() {
             .set({	"Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0OTgxMzY0OTgsImlhdCI6MTQ5NzUzMTY5OCwic3ViIjoiVGVzdDEifQ.n93eyWMgdY5bVnTRdEeBzceolmLwu_pRsJ-w_9i5C7g"})
             .end(function(err, res) {
                 res.should.have.status(200);
-                res.body.should.be.a('object');
+                res.body.should.be.a('array');
 
-                res.body.should.have.property('film_id');
-                res.body.should.have.property('title');
-                res.body.should.have.property('description');
-                res.body.should.have.property('release_year');
-                res.body.should.have.property('language_id');
-                res.body.should.have.property('original_language_id');
-                res.body.should.have.property('rental_duration');
-                res.body.should.have.property('rental_rate');
-                res.body.should.have.property('length');
-                res.body.should.have.property('replacement_cost');
-                res.body.should.have.property('rating');
-                res.body.should.have.property('special_features');
-                res.body.should.have.property('last_update');
+                res.body[0].should.have.property('film_id');
+                res.body[0].should.have.property('title');
+                res.body[0].should.have.property('description');
+                res.body[0].should.have.property('release_year');
+                res.body[0].should.have.property('language_id');
+                res.body[0].should.have.property('original_language_id');
+                res.body[0].should.have.property('rental_duration');
+                res.body[0].should.have.property('rental_rate');
+                res.body[0].should.have.property('length');
+                res.body[0].should.have.property('replacement_cost');
+                res.body[0].should.have.property('rating');
+                res.body[0].should.have.property('special_features');
+                res.body[0].should.have.property('last_update');
 
-                res.body.film_id.should.equal('1');
-                res.body.title.should.equal('ACADEMY DINOSAUR');
-                res.body.description.should.equal("A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies");
-                res.body.release_year.should.equal('2006');
-                res.body.language_id.should.equal('1');
-                res.body.original_language_id.should.equal(null);
-                res.body.rental_duration.should.equal(6);
-                res.body.rental_rate.should.equal(0.99);
-                res.body.length.should.equal(86);
-                res.body.replacement_cost.should.equal(20.99);
-                res.body.rating.should.equal("PG");
-                res.body.special_features.should.equal('Deleted Scenes,Behind the Scenes');
-                res.body.special_features.should.equal('2006-02-15T04:03:42.000Z');
+                res.body[0].film_id.should.equal(1);
+                res.body[0].title.should.equal('ACADEMY DINOSAUR');
+                res.body[0].description.should.equal("A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies");
+                res.body[0].release_year.should.equal(2006);
+                res.body[0].language_id.should.equal(1);
+                res.body[0].rental_duration.should.equal(6);
+                res.body[0].rental_rate.should.equal(0.99);
+                res.body[0].length.should.equal(86);
+                res.body[0].replacement_cost.should.equal(20.99);
+                res.body[0].rating.should.equal("PG");
+                res.body[0].special_features.should.equal('Deleted Scenes,Behind the Scenes');
+                res.body[0].last_update.should.equal('2006-02-15T03:03:42.000Z');
                 done();
             });
     });
@@ -156,35 +154,34 @@ describe('Film Select Test', function() {
             .get('/api/v1/films/1')
             .end(function(err, res) {
                 res.should.have.status(200);
-                res.body.should.be.a('object');
+                res.body.should.be.a('array');
 
-                res.body.should.have.property('film_id');
-                res.body.should.have.property('title');
-                res.body.should.have.property('description');
-                res.body.should.have.property('release_year');
-                res.body.should.have.property('language_id');
-                res.body.should.have.property('original_language_id');
-                res.body.should.have.property('rental_duration');
-                res.body.should.have.property('rental_rate');
-                res.body.should.have.property('length');
-                res.body.should.have.property('replacement_cost');
-                res.body.should.have.property('rating');
-                res.body.should.have.property('special_features');
-                res.body.should.have.property('last_update');
+                res.body[0].should.have.property('film_id');
+                res.body[0].should.have.property('title');
+                res.body[0].should.have.property('description');
+                res.body[0].should.have.property('release_year');
+                res.body[0].should.have.property('language_id');
+                res.body[0].should.have.property('original_language_id');
+                res.body[0].should.have.property('rental_duration');
+                res.body[0].should.have.property('rental_rate');
+                res.body[0].should.have.property('length');
+                res.body[0].should.have.property('replacement_cost');
+                res.body[0].should.have.property('rating');
+                res.body[0].should.have.property('special_features');
+                res.body[0].should.have.property('last_update');
 
-                res.body.film_id.should.equal('1');
-                res.body.title.should.equal('ACADEMY DINOSAUR');
-                res.body.description.should.equal("A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies");
-                res.body.release_year.should.equal('2006');
-                res.body.language_id.should.equal('1');
-                res.body.original_language_id.should.equal(null);
-                res.body.rental_duration.should.equal(6);
-                res.body.rental_rate.should.equal(0.99);
-                res.body.length.should.equal(86);
-                res.body.replacement_cost.should.equal(20.99);
-                res.body.rating.should.equal("PG");
-                res.body.special_features.should.equal('Deleted Scenes,Behind the Scenes');
-                res.body.special_features.should.equal('2006-02-15T04:03:42.000Z');
+                res.body[0].film_id.should.equal(1);
+                res.body[0].title.should.equal('ACADEMY DINOSAUR');
+                res.body[0].description.should.equal("A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies");
+                res.body[0].release_year.should.equal(2006);
+                res.body[0].language_id.should.equal(1);
+                res.body[0].rental_duration.should.equal(6);
+                res.body[0].rental_rate.should.equal(0.99);
+                res.body[0].length.should.equal(86);
+                res.body[0].replacement_cost.should.equal(20.99);
+                res.body[0].rating.should.equal("PG");
+                res.body[0].special_features.should.equal('Deleted Scenes,Behind the Scenes');
+                res.body[0].last_update.should.equal('2006-02-15T03:03:42.000Z');
                 done();
             });
     });
@@ -199,9 +196,9 @@ describe('Rentals Test', function() {
                 res.should.have.status(200);
                 res.body.should.be.a('array');
 
-                res.body[0].should.have.proporty('title');
-                res.body[1].should.have.proporty('title');
-                res.body[2].should.have.proporty('title');
+                res.body[0].should.have.property('title');
+                res.body[1].should.have.property('title');
+                res.body[2].should.have.property('title');
 
                 res.body[0].title.should.equal('DOORS PRESIDENT');
                 res.body[1].title.should.equal('BLACKOUT PRIVATE');
@@ -271,13 +268,13 @@ describe('Adjust Rental Test', function() {
                 res.body.result.should.have.property('changedRows');
 
                 res.body.result.fieldCount.should.equal(0);
-                res.body.result.affectedRows.should.equal(2);
+                res.body.result.affectedRows.should.equal(1);
                 res.body.result.insertId.should.equal(0);
                 res.body.result.serverStatus.should.equal(2);
                 res.body.result.warningCount.should.equal(0);
-                res.body.result.message.should.equal('(Rows matched: 2  Changed: 2  Warnings: 0');
+                res.body.result.message.should.equal('(Rows matched: 1  Changed: 1  Warnings: 0');
                 res.body.result.protocol41.should.equal(true);
-                res.body.result.changedRows.should.equal(2);
+                res.body.result.changedRows.should.equal(1);
 
                 done();
             });
@@ -307,7 +304,7 @@ describe('Delete Rental Test', function() {
                 res.body.result.should.have.property('changedRows');
 
                 res.body.result.fieldCount.should.equal(0);
-                res.body.result.affectedRows.should.equal(2);
+                res.body.result.affectedRows.should.equal(1);
                 res.body.result.insertId.should.equal(0);
                 res.body.result.serverStatus.should.equal(2);
                 res.body.result.warningCount.should.equal(0);
