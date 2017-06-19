@@ -20,11 +20,19 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".LoginActivity">        </activity>
+        <activity android:name=".LoginActivity"
+                  android:label="Login">                     </activity>
+        <activity android:name=".RegisterActivity"
+                  android:label="Register">                  </activity>
+        <activity android:name=".MovieActivity"
+                  android:label="Available Movies">          </activity>
+        <activity android:name=".DetailedActivity"
+                  android:label="Selected Movie">            </activity>
+        <activity android:name=".RentalActivity"
+                  android:label="Your Rentals">              </activity>
+        <activity android:name=".DetailedRentalActivity"
+                  android:label="Selected Rental">           </activity>
 
-         <activity android:name=".RegisterActivity">        </activity>
-        <activity android:name=".MovieActivity">        </activity>
-        <activity android:name=".DetailedActivity">        </activity>
     </application>
 
 </manifest>

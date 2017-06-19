@@ -48,6 +48,7 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_success);
 
+
         final Button button = (Button) findViewById(R.id.btnLogin);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -60,6 +61,15 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
             }
         });
 
+        final Button btnRental = (Button) findViewById(R.id.btnRental);
+        btnRental.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent rental = new Intent(getApplicationContext(), RentalActivity.class);
+                startActivity(rental);
+            }
+        });
 
         System.out.println("1");
         listView = (ListView) findViewById(R.id.listview);

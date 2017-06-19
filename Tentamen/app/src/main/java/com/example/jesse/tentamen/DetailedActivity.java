@@ -53,21 +53,20 @@ public class DetailedActivity extends AppCompatActivity
         String cost = (String) extras.get("cost");
         //Log.i(TAG, item.toString());
 
-        titleView.setText("Titel: " + title);
-        realeaseView.setText("Release: " + releaseyear);
-        lengthView.setText("Length: " + length);
-        ratingView.setText("Rating: " + rating);
+        titleView.setText("" + title);
+        realeaseView.setText("Releaseyear: \n" + releaseyear);
+        lengthView.setText("Length: \n" + length + " Minutes");
+        ratingView.setText("Rating: \n" + rating);
 
         System.out.println(features);
-        featuresView.setText("Features: " + features);
-        descriptionView.setText("Description: " + beschrijving);
-        rentaldurationView.setText("Rental Duration: " + duration);
-        rentalrateView.setText("Rental Rate: " + rate);
-        replacement.setText("Replacement Cost: " + cost);
+        featuresView.setText("Features: \n" + features);
+        descriptionView.setText("Description: \n" + beschrijving);
+        rentaldurationView.setText("Rental Duration: \n" + duration + " Days");
+        rentalrateView.setText("Rental Rate: \n" + "€" + rate + " Per day");
+        replacement.setText("Replacement Cost: \n" + "€" + cost);
 
 
         rent = (Button) findViewById(R.id.rentbutton);
-        handIn = (Button) findViewById(R.id.handinmovie);
     }
 
 
