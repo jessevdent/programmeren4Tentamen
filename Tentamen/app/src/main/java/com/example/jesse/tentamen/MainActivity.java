@@ -21,13 +21,13 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     // Logging tag
-    public final String TAG = this.getClass().getSimpleName();
+    //public final String TAG = this.getClass().getSimpleName();
 
     // The name for communicating Intents extras
-    public final static String TODO_DATA = "TODOS";
+    //public final static String TODO_DATA = "TODOS";
 
     // A request code for returning data from Intent - is supposed to be unique.
-    public static final int MY_REQUEST_CODE = 1234;
+    //public static final int MY_REQUEST_CODE = 1234;
 
 
     @Override
@@ -38,9 +38,10 @@ public class MainActivity extends AppCompatActivity {
         // Het token is opgeslagen in SharedPreferences.
         // Mocht er geen token zijn, of het token is expired, dan moeten we
         // eerst opnieuw inloggen.
-        if(tokenAvailable()){
-            setContentView(R.layout.activity_success);
+        //if(tokenAvailable()){
+            //setContentView(R.layout.activity_success);
 
+            /*
             final Button button = (Button) findViewById(R.id.btnLogin);
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -52,22 +53,27 @@ public class MainActivity extends AppCompatActivity {
                     setContentView(R.layout.activity_main);
 
                 }
-            });
-            //
-            Log.d(TAG, "Token gevonden!");
 
-        } else {
+            });
+            */
+            //Log.d(TAG, "Token gevonden!");
+        // Start the main activity, and close the login activity
+        //Intent success = new Intent(getApplicationContext(), MovieActivity.class);
+        //startActivity(success);
+        // Close the current activity
+        //finish();
+        //} else {
             //
             // Blijkbaar was er geen token - eerst inloggen dus
             //
-            Log.d(TAG, "Geen token gevonden - inloggen dus");
+            //Log.d(TAG, "Geen token gevonden - inloggen dus");
             Intent login = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(login);
             // Sluit de huidige activity. Dat voorkomt dat de gebuiker via de
             // back-button zonder inloggen terugkeert naar het homescreen.
             finish();
         }
-    }
+    //}
 
     /**
      * Aangeroepen door terugkerende Intents. Maakt het mogelijk om data
