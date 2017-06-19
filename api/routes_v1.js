@@ -21,7 +21,7 @@ routes.get('/films', function(req, res){
 
     res.contentType('application/json');
 
-    var query = 'SELECT * FROM `1033`.`film`, `1033`.`inventory` WHERE `film`.`film_id` = `inventory`.`film_id` ORDER BY `film`.`film_id` ASC';
+    var query = 'SELECT * from film where exists (select distinct film_id from inventory where inventory.film_id = film.film_id) ORDER BY `film`.`film_id` ASC';
 
     if(limit !== undefined) {
         query += ' LIMIT ' + limit;
