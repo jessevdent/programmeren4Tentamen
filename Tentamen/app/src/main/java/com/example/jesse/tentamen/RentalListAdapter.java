@@ -50,7 +50,7 @@ public class RentalListAdapter extends BaseAdapter {
         if (convertView == null)
             convertView = inflater.inflate(R.layout.listview_row_rental, null);
 
-        TextView title = (TextView) convertView.findViewById(R.id.title);
+        TextView title = (TextView) convertView.findViewById(R.id.rentaltitle);
         Item m = Items.get(position);
 
         title.setText(m.getTitle());

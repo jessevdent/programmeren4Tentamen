@@ -27,6 +27,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 //import nl.avans.android.todos.R;
 //import nl.avans.android.todos.service.Config;/
 //import nl.avans.android.todos.service.VolleyRequestQueue;
@@ -108,7 +110,8 @@ public class LoginActivity extends AppCompatActivity {
                                         getString(R.string.preference_file_key), Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPref.edit();
                                 editor.putString(getString(R.string.saved_token), token);
-                                editor.commit();
+                                editor.apply();
+                                System.out.println(token);
 
                                 // Start the main activity, and close the login activity
                                 Intent success = new Intent(getApplicationContext(), MovieActivity.class);
@@ -185,6 +188,7 @@ public class LoginActivity extends AppCompatActivity {
     public void displayMessage(String toastString){
         Toast.makeText(getApplicationContext(), toastString, Toast.LENGTH_LONG).show();
     }
+
 
 
 }

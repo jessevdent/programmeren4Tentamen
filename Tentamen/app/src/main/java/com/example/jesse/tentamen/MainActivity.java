@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             //
-            Log.d(TAG, "Token gevonden - ToDos ophalen!");
+            Log.d(TAG, "Token gevonden!");
 
         } else {
             //
@@ -99,4 +99,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+
+
     }
