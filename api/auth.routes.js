@@ -11,7 +11,7 @@ routes.post('/login', function(req, res) {
     var password = req.body.password;
 
     var query = {
-        sql: 'SELECT username, password FROM customer WHERE username = ? AND password = ?',
+        sql: 'SELECT username, password , customer_id FROM customer WHERE username = ? AND password = ?',
         values: [username, password],
         timeout: 2000
     };
