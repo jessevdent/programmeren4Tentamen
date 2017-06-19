@@ -37,7 +37,7 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
     private static final String TAG = MainActivity.class.getSimpleName();
 
     // Movies json url
-    private static final String url = "https://tentamenprogrammeren4js.herokuapp.com/api/v1/films?limit=20&offset=10";
+    private static final String url = "https://tentamenprogrammeren4js.herokuapp.com/api/v1/films?limit=20&offset=";
     private ProgressDialog pDialog;
     private ArrayList<Item> itemList = new ArrayList();
     private ListView listView;
@@ -61,7 +61,9 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.remove(getString(R.string.saved_token));
                 editor.commit();
-                setContentView(R.layout.activity_main);
+                Intent login2 = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(login2);
+                finish();
             }
         });
 
@@ -76,6 +78,7 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
                 finish();
             }
         });
+
 
         System.out.println("1");
         listView = (ListView) findViewById(R.id.listview);
@@ -92,7 +95,7 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
 
         System.out.println("3");
         // Creating volley request obj
-        JsonArrayRequest movieReq = new JsonArrayRequest(url,
+        JsonArrayRequest movieReq = new JsonArrayRequest(url + 0,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
