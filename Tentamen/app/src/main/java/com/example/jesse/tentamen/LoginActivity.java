@@ -46,6 +46,10 @@ public class LoginActivity extends AppCompatActivity {
 
     public final String TAG = this.getClass().getSimpleName();
 
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,6 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                             // totdat het token expired.
                             try {
                                 String token = response.getString("token");
+                                String customerid = response.getString("Customerid");
 
                                 Context context = getApplicationContext();
                                 SharedPreferences sharedPref = context.getSharedPreferences(
@@ -115,7 +120,9 @@ public class LoginActivity extends AppCompatActivity {
 
                                 // Start the main activity, and close the login activity
                                 Intent success = new Intent(getApplicationContext(), MovieActivity.class);
+                                success.putExtra("id", customerid);
                                 startActivity(success);
+
                                 // Close the current activity
                                 finish();
 

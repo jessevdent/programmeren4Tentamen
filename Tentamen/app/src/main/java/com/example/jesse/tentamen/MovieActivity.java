@@ -42,11 +42,15 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
     private ArrayList<Item> itemList = new ArrayList();
     private ListView listView;
     private CustomListAdapter adapter;
+    String customerid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_success);
+        Bundle extras = getIntent().getExtras();
+        customerid = (String) extras.get("id");
+        System.out.println(customerid);
 
 
         final Button button = (Button) findViewById(R.id.btnLogin);
@@ -67,7 +71,9 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
             public void onClick(View v)
             {
                 Intent rental = new Intent(getApplicationContext(), RentalActivity.class);
+                rental.putExtra("id", customerid);
                 startActivity(rental);
+                finish();
             }
         });
 
@@ -163,9 +169,11 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
         intent.putExtra("duration", item.getRentalduratiom());
         intent.putExtra("rate", item.getRentalrate());
         intent.putExtra("cost", item.getReplacementcost());
+        intent.putExtra("id", customerid);
 
 
         startActivity(intent);
+        finish();
     }
 
 

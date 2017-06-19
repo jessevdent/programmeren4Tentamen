@@ -20,6 +20,8 @@ public class DetailedRentalActivity extends AppCompatActivity {
         titleView = (TextView) findViewById(R.id.yourrentaltitle);
         Bundle extras = getIntent().getExtras();
         String title = (String) extras.get("title");
+        String id = (String) extras.get("id");
+        System.out.println(id);
 
         titleView.setText(title);
     }

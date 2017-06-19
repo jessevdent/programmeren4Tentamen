@@ -33,11 +33,12 @@ public class RentalActivity extends AppCompatActivity implements AdapterView.OnI
 
     // Log tag
     private static final String TAG = MainActivity.class.getSimpleName();
-    private static final String url = "https://tentamenprogrammeren4js.herokuapp.com/api/v1/rentals/45";
+    private String url = "https://tentamenprogrammeren4js.herokuapp.com/api/v1/rentals/";
     private ProgressDialog pDialog;
     private ArrayList<Item> rentalList = new ArrayList();
     private ListView listView;
     private RentalListAdapter adapter;
+    String customerid;
     //private Context context;
 
 
@@ -56,6 +57,10 @@ public class RentalActivity extends AppCompatActivity implements AdapterView.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rental);
+
+        Bundle extras = getIntent().getExtras();
+        customerid = (String) extras.get("id");
+        System.out.println(customerid);
 
         System.out.println("1");
         listView = (ListView) findViewById(R.id.rentallistview);
@@ -76,7 +81,7 @@ public class RentalActivity extends AppCompatActivity implements AdapterView.OnI
         //if (token != null && !token.equals("dummy default token")) {
             //System.out.println(token);
             // Creating volley request obj
-            JsonArrayRequest rentalReq = new JsonArrayRequest(url,
+            JsonArrayRequest rentalReq = new JsonArrayRequest(url + customerid,
                     new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray response) {
@@ -142,6 +147,7 @@ public class RentalActivity extends AppCompatActivity implements AdapterView.OnI
         Item item = rentalList.get(position);
         Intent intent = new Intent(getApplicationContext(), DetailedRentalActivity.class);
         intent.putExtra("title", item.getTitle());
+        intent.putExtra("id", customerid);
 
         startActivity(intent);
     }
