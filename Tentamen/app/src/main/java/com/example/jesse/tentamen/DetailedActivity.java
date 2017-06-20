@@ -45,6 +45,9 @@ public class DetailedActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
         titleView = (TextView) findViewById(R.id.title);
         realeaseView = (TextView) findViewById(R.id.release_year);
@@ -92,6 +95,7 @@ public class DetailedActivity extends AppCompatActivity
         {
             public void onClick(View v){
                 handleRent(id, inventoryid);
+                handlePut(id, inventoryid);
             }
         });
 
@@ -109,6 +113,74 @@ public class DetailedActivity extends AppCompatActivity
             JSONObject jsonBody = new JSONObject();
             JsonObjectRequest jsObjRequest = new JsonObjectRequest
                     (Request.Method.POST, url + id + "/" + inventoryid, jsonBody, new Response.Listener<JSONObject>() {
+
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            // Succesvol response - dat betekent dat we een geldig token hebben.
+                            // txtLoginErrorMsg.setText("Response: " + response.toString());
+                            //displayMessage("Succesvol ingelogd!");
+
+                            // We hebben nu het token. We kiezen er hier voor om
+                            // het token in SharedPreferences op te slaan. Op die manier
+                            // is het token tussen app-stop en -herstart beschikbaar -
+                            // totdat het token expired.
+                            try {
+                                System.out.println("3");
+                                // Start the main activity, and close the login activity
+                                Intent success = new Intent(getApplicationContext(), RentalActivity.class);
+                                success.putExtra("id", id);
+                                startActivity(success);
+                                // Close the current activity
+                                finish();
+                                System.out.println("4");
+                            } catch (Exception e) {
+                                // e.printStackTrace();
+                                Log.e(TAG, e.getMessage());
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            handleErrorResponse(error);
+                        }
+
+                    }){
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> headers = new HashMap<>();
+                    headers.put("Content-Type", "application/json");
+                    headers.put("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0OTgxMzY0OTgsImlhdCI6MTQ5NzUzMTY5OCwic3ViIjoiVGVzdDEifQ.n93eyWMgdY5bVnTRdEeBzceolmLwu_pRsJ-w_9i5C7g");
+                    return headers;
+
+                }
+            };
+
+            jsObjRequest.setRetryPolicy(new DefaultRetryPolicy(
+                    1500, // SOCKET_TIMEOUT_MS,
+                    2, // DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+            // Access the RequestQueue through your singleton class.
+            VolleyRequestQueue.getInstance(this).addToRequestQueue(jsObjRequest);
+        } catch (Exception e) {
+            // e.printStackTrace();
+        }
+        System.out.println("5");
+        return;
+    }
+
+    private void handlePut(final String id, int inventoryid) {
+        //
+        // Maak een JSON object met username en password. Dit object sturen we mee
+        // als request body (zoals je ook met Postman hebt gedaan)
+        //
+        System.out.println("2");
+
+        try {
+            JSONObject jsonBody = new JSONObject();
+            JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                    (Request.Method.PUT, url + id + "/" + inventoryid, jsonBody, new Response.Listener<JSONObject>() {
 
                         @Override
                         public void onResponse(JSONObject response) {

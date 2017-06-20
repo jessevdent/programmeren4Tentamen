@@ -3,6 +3,7 @@ package com.example.jesse.tentamen;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,21 +32,29 @@ public class DetailedRentalActivity extends AppCompatActivity {
 
     TextView titleView;
     Button handin;
-    String id, url;
-    int inventoryid;
+    String id, url, urldel, customerid;
+    int inventoryid, rentalid;
     public final String TAG = this.getClass().getSimpleName();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rental_detailed);
 
+
+
         titleView = (TextView) findViewById(R.id.yourrentaltitle);
         Bundle extras = getIntent().getExtras();
         String title = (String) extras.get("title");
         id = (String) extras.get("id");
         inventoryid = (int) extras.get("inventoryid");
-        System.out.println(id);
+        rentalid = (int) extras.get("rentalid");
+
+
+
+
+        urldel = new String("https://tentamenprogrammeren4js.herokuapp.com/api/v1/rentalsdelete/");
         url = new String("https://tentamenprogrammeren4js.herokuapp.com/api/v1/rentals/");
         titleView.setText(title);
 
@@ -54,6 +63,7 @@ public class DetailedRentalActivity extends AppCompatActivity {
         {
             public void onClick(View v){
                 handleHandin(id, inventoryid);
+                handlePut(rentalid);
             }
         });
     }
@@ -74,8 +84,74 @@ public class DetailedRentalActivity extends AppCompatActivity {
                         public void onResponse(JSONObject response) {
                            try {
                                 System.out.println("3");
+
+                                // Close the current activity
+                                finish();
+                                System.out.println("4");
+                            } catch (Exception e) {
+                                // e.printStackTrace();
+                                Log.e(TAG, e.getMessage());
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            handleErrorResponse(error);
+                        }
+
+                    }){
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> headers = new HashMap<>();
+                    headers.put("Content-Type", "application/json");
+                    headers.put("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0OTgxMzY0OTgsImlhdCI6MTQ5NzUzMTY5OCwic3ViIjoiVGVzdDEifQ.n93eyWMgdY5bVnTRdEeBzceolmLwu_pRsJ-w_9i5C7g");
+                    return headers;
+
+                }
+            };
+
+            jsObjRequest.setRetryPolicy(new DefaultRetryPolicy(
+                    1500, // SOCKET_TIMEOUT_MS,
+                    2, // DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+            // Access the RequestQueue through your singleton class.
+            VolleyRequestQueue.getInstance(this).addToRequestQueue(jsObjRequest);
+        } catch (Exception e) {
+            // e.printStackTrace();
+        }
+        System.out.println("5");
+        return;
+    }
+
+    private void handlePut(int rentalid) {
+        //
+        // Maak een JSON object met username en password. Dit object sturen we mee
+        // als request body (zoals je ook met Postman hebt gedaan)
+        //
+        System.out.println("2");
+
+        try {
+            JSONObject jsonBody = new JSONObject();
+            JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                    (Request.Method.PUT, urldel + rentalid, jsonBody, new Response.Listener<JSONObject>() {
+
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            // Succesvol response - dat betekent dat we een geldig token hebben.
+                            // txtLoginErrorMsg.setText("Response: " + response.toString());
+                            //displayMessage("Succesvol ingelogd!");
+
+                            // We hebben nu het token. We kiezen er hier voor om
+                            // het token in SharedPreferences op te slaan. Op die manier
+                            // is het token tussen app-stop en -herstart beschikbaar -
+                            // totdat het token expired.
+                            try {
+                                System.out.println("3");
                                 // Start the main activity, and close the login activity
                                 Intent success = new Intent(getApplicationContext(), RentalActivity.class);
+                                success.putExtra("id", id);
                                 startActivity(success);
                                 // Close the current activity
                                 finish();

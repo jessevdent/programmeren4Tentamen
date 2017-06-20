@@ -100,8 +100,13 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
             {
                 result = offset - 20;
                 offset = result;
+                if(result <0)
+                {
+                    result = 0;
+                }
                 itemList.clear();
                 handleMovie();
+
             }
         });
 
@@ -208,6 +213,7 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
         intent.putExtra("id", customerid);
         intent.putExtra("filmid", item.getFilmid());
         intent.putExtra("inventoryid", item.getInventoryid());
+        System.out.println(item.getInventoryid());
 
 
         startActivity(intent);

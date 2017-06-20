@@ -27,11 +27,13 @@
         <activity android:name=".MovieActivity"
                   android:label="Available Movies">          </activity>
         <activity android:name=".DetailedActivity"
-                  android:label="Selected Movie">            </activity>
+                  android:label="Selected Movie"
+            android:parentActivityName=".MovieActivity">            </activity>
         <activity android:name=".RentalActivity"
                   android:label="Your Rentals">              </activity>
         <activity android:name=".DetailedRentalActivity"
                   android:label="Selected Rental">           </activity>
+
 
     </application>
 

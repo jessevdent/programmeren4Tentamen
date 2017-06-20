@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 public class Item implements Serializable {
     private String title, description, releaseyear, rentalduratiom, rentalrate, length, replacementcost, rating, specialfeatures, lastupdate;
-    private int filmid, inventoryid;
+    private int filmid, inventoryid, rentalid;
     //private double rating;
 
     public Item(){
@@ -20,7 +20,7 @@ public class Item implements Serializable {
 
 
 
-    public Item(int filmid, int inventoryid, String title, String description, String releaseyear, String rentalduratiom, String rentalrate, String length, String replacementcost, String rating, String specialfeatures, String lastupdate ){
+    public Item(int filmid, int inventoryid, int rentalid, String title, String description, String releaseyear, String rentalduratiom, String rentalrate, String length, String replacementcost, String rating, String specialfeatures, String lastupdate ){
         this.title = title;
         this.description = description;
         this.releaseyear = releaseyear;
@@ -33,6 +33,7 @@ public class Item implements Serializable {
         this.lastupdate = lastupdate;
         this.filmid = filmid;
         this.inventoryid = inventoryid;
+        this.rentalid = rentalid;
     }
 
     public String getTitle() {
@@ -128,4 +129,7 @@ public class Item implements Serializable {
     public void setInventoryid(int inventoryid) {
         this.inventoryid = inventoryid;
     }
+
+    public int getRentalid() { return rentalid;}
+    public void setRentalid(int rentalid) { this.rentalid = rentalid;}
 }

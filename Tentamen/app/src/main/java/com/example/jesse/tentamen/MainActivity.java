@@ -28,52 +28,18 @@ public class MainActivity extends AppCompatActivity {
 
     // A request code for returning data from Intent - is supposed to be unique.
     //public static final int MY_REQUEST_CODE = 1234;
+    String customerid;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // We kijken hier eerst of de gebruiker nog een geldig token heeft.
-        // Het token is opgeslagen in SharedPreferences.
-        // Mocht er geen token zijn, of het token is expired, dan moeten we
-        // eerst opnieuw inloggen.
-        //if(tokenAvailable()){
-            //setContentView(R.layout.activity_success);
-
-            /*
-            final Button button = (Button) findViewById(R.id.btnLogin);
-            button.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(
-                            getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.remove(getString(R.string.saved_token));
-                    editor.commit();
-                    setContentView(R.layout.activity_main);
-
-                }
-
-            });
-            */
-            //Log.d(TAG, "Token gevonden!");
-        // Start the main activity, and close the login activity
-        //Intent success = new Intent(getApplicationContext(), MovieActivity.class);
-        //startActivity(success);
-        // Close the current activity
-        //finish();
-        //} else {
-            //
-            // Blijkbaar was er geen token - eerst inloggen dus
-            //
-            //Log.d(TAG, "Geen token gevonden - inloggen dus");
             Intent login = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(login);
-            // Sluit de huidige activity. Dat voorkomt dat de gebuiker via de
-            // back-button zonder inloggen terugkeert naar het homescreen.
+
             finish();
-        }
-    //}
+            }
 
     /**
      * Aangeroepen door terugkerende Intents. Maakt het mogelijk om data
