@@ -21,7 +21,7 @@ routes.get('/films', function(req, res){
 
     res.contentType('application/json');
 
-    var query = 'SELECT inventory.inventory_id, film.title, film.description, film.special_features, film.release_year, film.rating, film.length, film.rental_duration, film.rental_rate, film.replacement_cost, film.film_id from `1033`.film, `1033`.inventory,  `1033`.rental where film.film_id = inventory.film_id and rental.available = 0';
+    var query = 'SELECT inventory.inventory_id, film.title, film.description, film.special_features, film.release_year, film.rating, film.length, film.rental_duration, film.rental_rate, film.replacement_cost, film.film_id from `1033`.film, `1033`.inventory,  `1033`.rental where film.film_id = inventory.film_id and inventory.available = 0';
 
     if(limit !== undefined) {
         query += ' LIMIT ' + limit;
@@ -87,7 +87,7 @@ routes.post('/rentals/:userid/:inventoryid', function(req, res) {
 
     res.contentType('application/json');
     var query = {
-        sql: 'INSERT INTO `1033`.`rental`(`available`, `rental_date`, `inventory_id`, `customer_id`) VALUES(1, CURRENT_TIMESTAMP, ?, ?)',
+        sql: 'begin; INSERT INTO `1033`.`rental`(`rental_date`, `inventory_id`, `customer_id`) VALUES(CURRENT_TIMESTAMP, ?, ?); commit; begin; update `1033`.`inventory` inner JOIN `1033`.rental on  inventory.inventory_id = rental.inventory_id inner join customer on customer.customer_id = rental.customer_id SET available = 1; commit;',
         values: [inventory_id, user_id],
         timeout: 2000
     };
