@@ -68,7 +68,7 @@ routes.get('/rentals/:userid', function(req, res){
 
     res.contentType('application/json');
 
-    db.query('SELECT `view_rental`.`title`, `view_rental`.`inventory_id` FROM `1033`.`view_rental`, `1033`.`rental` WHERE rental.rental_id = view_rental.rental_id AND rental.customer_id=? AND view_rental.active = 1', [ customer_id ], function(error, rows, fields) {
+    db.query('SELECT `view_rental`.`title`, `view_rental`.`inventory_id` FROM `1033`.`view_rental`, `1033`.`rental` WHERE rental.rental_id = view_rental.rental_id AND rental.customer_id=? ', [ customer_id ], function(error, rows, fields) {
         if (error) {
             res.status(400);
             res.json({ error: 'Error while performing Query.'});
