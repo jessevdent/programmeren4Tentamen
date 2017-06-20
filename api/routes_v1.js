@@ -21,7 +21,7 @@ routes.get('/films', function(req, res){
 
     res.contentType('application/json');
 
-    var query = 'SELECT * from `1033`.`film`, `1033`.`inventory` where exists (select distinct `film_id` from `1033`.`inventory` where `inventory`.`film_id` = `film`.`film_id`)';
+    var query = 'SELECT film.film_id, inventory.inventory_id, film.title, film.description, film.release_year, film.rental_duration, film.rental_rate, film.length, film.replacement_cost, film.rating, film.special_features, film.last_update from `1033`.`film`, `1033`.`inventory` where exists (select distinct `film_id` from `1033`.`inventory` where `inventory`.`film_id` = `film`.`film_id`)';
 
     if(limit !== undefined) {
         query += ' LIMIT ' + limit;
