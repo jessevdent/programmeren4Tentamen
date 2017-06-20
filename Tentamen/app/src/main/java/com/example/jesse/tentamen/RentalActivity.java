@@ -94,6 +94,7 @@ public class RentalActivity extends AppCompatActivity implements AdapterView.OnI
                                     JSONObject obj = response.getJSONObject(i);
                                     Item item = new Item();
                                     item.setTitle(obj.getString("title"));
+                                    item.setInventoryid(obj.getInt("inventory_id"));
 
                                     rentalList.add(item);
 
@@ -148,7 +149,7 @@ public class RentalActivity extends AppCompatActivity implements AdapterView.OnI
         Intent intent = new Intent(getApplicationContext(), DetailedRentalActivity.class);
         intent.putExtra("title", item.getTitle());
         intent.putExtra("id", customerid);
-
+        intent.putExtra("inventoryid", item.getInventoryid());
         startActivity(intent);
     }
 
