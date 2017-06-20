@@ -87,7 +87,7 @@ routes.post('/rentals/:userid/:inventoryid', function(req, res) {
 
     res.contentType('application/json');
     var query = {
-        sql: 'INSERT INTO `1033`.`rental`(`rental_date`, `available`, `inventory_id`, `customer_id`) VALUES(1, CURRENT_TIMESTAMP, ?, ?)',
+        sql: 'INSERT INTO `1033`.`rental`(`available`, `rental_date`, `inventory_id`, `customer_id`) VALUES(1, CURRENT_TIMESTAMP, ?, ?)',
         values: [inventory_id, user_id],
         timeout: 2000
     };
