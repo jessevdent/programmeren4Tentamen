@@ -76,7 +76,6 @@ public class DetailedRentalActivity extends AppCompatActivity {
                                 System.out.println("3");
                                 // Start the main activity, and close the login activity
                                 Intent success = new Intent(getApplicationContext(), RentalActivity.class);
-                                success.putExtra("id", id);
                                 startActivity(success);
                                 // Close the current activity
                                 finish();
