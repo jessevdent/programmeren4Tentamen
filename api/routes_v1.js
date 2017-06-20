@@ -87,7 +87,7 @@ routes.post('/rentals/:userid/:inventoryid', function(req, res) {
 
     res.contentType('application/json');
     var query = {
-        sql: 'begin; INSERT INTO `1033`.`rental`(`rental_date`, `inventory_id`, `customer_id`) VALUES(CURRENT_TIMESTAMP, ?, ?); commit; begin; update `1033`.`inventory` inner JOIN `1033`.`rental` on  `inventory`.`inventory_id` = `rental`.`inventory_id` inner join `customer` on `customer`.`customer_id` = `rental`.`customer_id` SET `available` = 1; commit',
+        sql: 'INSERT INTO `1033`.`rental`(`rental_date`, `inventory_id`, `customer_id`) VALUES(CURRENT_TIMESTAMP, ?, ?)',
         values: [inventory_id, user_id],
         timeout: 2000
     };
@@ -111,7 +111,7 @@ routes.put('/rentals/:userid/:inventoryid', function(req, res) {
     var rentals = req.body;
 
     var query = {
-        sql: 'UPDATE `1033`.`rental` SET `staff_id` = ?, `return_date` = ? WHERE `inventory_id` = ? AND `customer_id` = ?',
+        sql: 'update `1033`.`inventory` inner JOIN `1033`.`rental` on  `inventory`.`inventory_id` = `rental`.`inventory_id` inner join `customer` on `customer`.`customer_id` = `rental`.`customer_id` SET `available` = 1',
         values: [rentals.staffid, rentals.returndate, inventory_id, user_id],
         timeout: 2000
     };
