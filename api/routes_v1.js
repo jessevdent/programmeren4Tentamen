@@ -65,11 +65,10 @@ routes.get('/films/:filmid', function(req, res){
 routes.get('/rentals/:userid', function(req, res){
 
     var customer_id = req.params.userid;
-    var rental_id = req.body.rentalid;
 
     res.contentType('application/json');
 
-    db.query('SELECT `view_rental`.`title`, `view_rental`.`inventory_id` `rental`.`rental_id` FROM `1033`.`view_rental`, `1033`.`rental` WHERE rental.rental_id = view_rental.rental_id AND rental.customer_id=? AND rental.rental_id=?', [ customer_id, rental_id ], function(error, rows, fields) {
+    db.query('SELECT `view_rental`.`title`, `view_rental`.`inventory_id` `rental`.`rental_id` FROM `1033`.`view_rental`, `1033`.`rental` WHERE rental.rental_id = view_rental.rental_id AND rental.customer_id=?', [ customer_id ], function(error, rows, fields) {
         if (error) {
             res.status(400);
             res.json({ error: 'Error while performing Query.'});
