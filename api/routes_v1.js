@@ -21,7 +21,7 @@ routes.get('/films', function(req, res){
 
     res.contentType('application/json');
 
-    var query = 'SELECT *    from `1033`.film, `1033`.inventory    where film.film_id = inventory.film_id';
+    var query = 'SELECT * from `1033`.film, `1033`.inventory inner join `1033`.`rental` where film.film_id = inventory.film_id and rental.available = 0;';
 
     if(limit !== undefined) {
         query += ' LIMIT ' + limit;
@@ -87,7 +87,7 @@ routes.post('/rentals/:userid/:inventoryid', function(req, res) {
 
     res.contentType('application/json');
     var query = {
-        sql: 'INSERT INTO `1033`.`rental`(`rental_date`, `inventory_id`, `customer_id`) VALUES(CURRENT_TIMESTAMP, ?, ?)',
+        sql: 'INSERT INTO `1033`.`rental`(`rental_date`, `available`, `inventory_id`, `customer_id`) VALUES(1, CURRENT_TIMESTAMP, ?, ?)',
         values: [inventory_id, user_id],
         timeout: 2000
     };
