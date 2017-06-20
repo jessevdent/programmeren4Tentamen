@@ -37,12 +37,14 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
     private static final String TAG = MainActivity.class.getSimpleName();
 
     // Movies json url
-    private static final String url = "https://tentamenprogrammeren4js.herokuapp.com/api/v1/films?limit=20&offset=10";
+    private String url = "https://tentamenprogrammeren4js.herokuapp.com/api/v1/films?limit=20&offset=";
+    private int offset = 0;
     private ProgressDialog pDialog;
     private ArrayList<Item> itemList = new ArrayList();
     private ListView listView;
     private CustomListAdapter adapter;
     String customerid;
+    int result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +81,38 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
             }
         });
 
+        final Button volgende = (Button) findViewById(R.id.volgende);
+        volgende.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v)
+            {
+                result = offset + 20;
+                offset = result;
+                itemList.clear();
+                handleMovie();
+            }
+        });
 
+        final Button vorige = (Button) findViewById(R.id.vorige);
+        vorige.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v)
+            {
+                result = offset - 20;
+                offset = result;
+                itemList.clear();
+                handleMovie();
+            }
+        });
+
+
+        handleMovie();
+
+
+    }
+
+    public void handleMovie()
+    {
         System.out.println("1");
         listView = (ListView) findViewById(R.id.listview);
         adapter = new CustomListAdapter(this, itemList);
@@ -94,7 +127,7 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
 
         System.out.println("3");
         // Creating volley request obj
-        JsonArrayRequest movieReq = new JsonArrayRequest(url,
+        JsonArrayRequest movieReq = new JsonArrayRequest(url + result,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {

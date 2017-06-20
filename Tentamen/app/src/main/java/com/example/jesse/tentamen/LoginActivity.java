@@ -136,6 +136,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             handleErrorResponse(error);
+                            System.out.println(error);
                         }
                     });
 
