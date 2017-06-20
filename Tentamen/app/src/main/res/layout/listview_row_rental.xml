@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="35dp"
+    android:background="@color/colorBackground">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/colorForeground"
+        android:text="TITLE"
+        android:textSize="20dp"
+        android:padding="1dp"
+        android:gravity="center"
+        android:id="@+id/rentaltitle"
+        />
+
+</LinearLayout>
