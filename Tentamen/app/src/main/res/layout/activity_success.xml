@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listview"
+        android:layout_weight="1"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="4"
+        android:background="@color/colorBackground">
+
+        <Button
+            android:id="@+id/vorige"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:height="60dip"
+            android:text="Vorige"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/colorForeground"/>
+
+        <Button
+            android:id="@+id/volgende"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:height="60dip"
+            android:text="Volgende"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/colorForeground"/>
+
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:layout_weight="4"
+    android:background="@color/colorBackground">
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_margin="10dp"
+        android:height="60dip"
+        android:text="Logout"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorForeground"/>
+
+    <Button
+        android:id="@+id/btnRental"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_margin="10dp"
+        android:height="60dip"
+        android:text="See Rentals"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorForeground"/>
+
+    </LinearLayout>
+
+</LinearLayout>
