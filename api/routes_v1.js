@@ -156,7 +156,7 @@ routes.put('/rentalsdelete/:rentalid', function(req, res) {
     var rental_id = req.params.rentalid;
     var query = {
         sql:'update `1033`.`inventory` inner JOIN `1033`.`rental` on  `inventory`.`inventory_id` = `rental`.`inventory_id` and rental.rental_id = ? inner join `customer` on  `customer`.`customer_id` = `rental`.`customer_id` SET `available` = 0; ',
-        values: [inventory_id, user_id, rental_id],
+        values: [rental_id],
         timeout: 2000
     };
 
