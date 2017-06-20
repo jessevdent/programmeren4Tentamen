@@ -87,7 +87,7 @@ routes.post('/rentals/:userid/:inventoryid', function(req, res) {
 
     res.contentType('application/json');
     var query = {
-        sql: 'begin; INSERT INTO `1033`.`rental`(`rental_date`, `inventory_id`, `customer_id`) VALUES(CURRENT_TIMESTAMP, ?, ?); commit; begin; update `1033`.`inventory` inner JOIN `1033`.rental on  inventory.inventory_id = rental.inventory_id inner join customer on customer.customer_id = rental.customer_id SET available = 1; commit;',
+        sql: 'begin; INSERT INTO `1033`.`rental`(`rental_date`, `inventory_id`, `customer_id`) VALUES(CURRENT_TIMESTAMP, ?, ?); commit; begin; update `1033`.`inventory` inner JOIN `1033`.rental on  inventory.inventory_id = rental.inventory_id inner join customer on customer.customer_id = rental.customer_id SET available = 1; commit',
         values: [inventory_id, user_id],
         timeout: 2000
     };
