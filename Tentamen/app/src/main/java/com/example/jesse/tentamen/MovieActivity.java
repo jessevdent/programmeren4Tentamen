@@ -37,7 +37,7 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
     private static final String TAG = MainActivity.class.getSimpleName();
 
     // Movies json url
-    private static final String url = "https://tentamenprogrammeren4js.herokuapp.com/api/v1/films?limit=20&offset=";
+    private static final String url = "https://tentamenprogrammeren4js.herokuapp.com/api/v1/films?limit=20&offset=10";
     private ProgressDialog pDialog;
     private ArrayList<Item> itemList = new ArrayList();
     private ListView listView;
@@ -92,10 +92,9 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
         pDialog.setMessage("Loading...");
         pDialog.show();
 
-
         System.out.println("3");
         // Creating volley request obj
-        JsonArrayRequest movieReq = new JsonArrayRequest(url + 0,
+        JsonArrayRequest movieReq = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -108,6 +107,8 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
 
                                 JSONObject obj = response.getJSONObject(i);
                                 Item item = new Item();
+                                item.setFilmid(obj.getInt("film_id"));
+                                item.setInventoryid(obj.getInt("inventory_id"));
                                 item.setTitle(obj.getString("title"));
                                 item.setDescription(obj.getString("description"));
                                 item.setSpecialfeatures(obj.getString("special_features"));
@@ -117,7 +118,6 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
                                 item.setRentalduratiom(obj.getString("rental_duration"));
                                 item.setRentalrate(obj.getString("rental_rate"));
                                 item.setReplacementcost(obj.getString("replacement_cost"));
-
 
                                 // adding movie to movies array
                                 itemList.add(item);
@@ -173,6 +173,8 @@ public class MovieActivity extends Activity implements AdapterView.OnItemClickLi
         intent.putExtra("rate", item.getRentalrate());
         intent.putExtra("cost", item.getReplacementcost());
         intent.putExtra("id", customerid);
+        intent.putExtra("filmid", item.getFilmid());
+        intent.putExtra("inventoryid", item.getInventoryid());
 
 
         startActivity(intent);
