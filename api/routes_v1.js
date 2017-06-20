@@ -151,4 +151,26 @@ routes.delete('/rentals/:userid/:inventoryid', function(req, res) {
         };
     });
 });
+
+routes.put('/rentalsdelete/:rentalid', function(req, res) {
+
+    var rental_id = req.params.rentalid;
+    var query = {
+        sql:'update `1033`.`inventory` inner JOIN `1033`.`rental` on  `inventory`.`inventory_id` = `rental`.`inventory_id` and rental.rental_id = ? inner join `customer` on  `customer`.`customer_id` = `rental`.`customer_id` SET `available` = 0; ',
+        values: [inventory_id, user_id, rental_id],
+        timeout: 2000
+    };
+
+    console.log('Onze query: ' + query.sql);
+
+    res.contentType('application/json');
+    db.query(query, function(error, rows, fields) {
+        if (error) {
+            res.status(401).json(error);
+        } else {
+            res.status(200).json({ result: rows });
+        };
+    });
+});
+
 module.exports = routes;
